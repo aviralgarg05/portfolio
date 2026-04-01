@@ -10,9 +10,9 @@ export default function ExperiencePage() {
   const community = experience.filter(exp => exp.type === "community");
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       <section>
-        <h1 className="text-3xl mb-4">experience</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">experience</h1>
         <p className="text-sm text-accent leading-relaxed">
           building products, conducting research, and contributing to the tech community.
         </p>
@@ -21,7 +21,7 @@ export default function ExperiencePage() {
       {/* Current Roles */}
       {current.length > 0 && (
         <section>
-          <h2 className="text-xl mb-6">current</h2>
+          <h2 className="text-lg md:text-xl mb-6">current</h2>
           <div className="space-y-8">
             {current.map((exp, index) => (
               <div key={index} className="border-b border-border pb-8 last:border-0">
@@ -69,11 +69,11 @@ export default function ExperiencePage() {
       {/* Leadership */}
       {leadership.length > 0 && (
         <section>
-          <h2 className="text-xl mb-6">leadership</h2>
+          <h2 className="text-lg md:text-xl mb-6">leadership</h2>
           <div className="space-y-6">
             {leadership.map((exp, index) => (
               <div key={index} className="border-b border-border pb-6 last:border-0">
-                <h3 className="text-base mb-1">{exp.title}</h3>
+                <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
                 <div className="text-xs text-accent mb-3">{exp.period} • {exp.location}</div>
                 <p className="text-sm text-accent leading-relaxed">
@@ -88,11 +88,11 @@ export default function ExperiencePage() {
       {/* Research */}
       {research.length > 0 && (
         <section>
-          <h2 className="text-xl mb-6">research</h2>
+          <h2 className="text-lg md:text-xl mb-6">research</h2>
           <div className="space-y-6">
             {research.map((exp, index) => (
               <div key={index} className="border-b border-border pb-6 last:border-0">
-                <h3 className="text-base mb-1">{exp.title}</h3>
+                <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
                 <div className="text-xs text-accent mb-3">{exp.period} • {exp.location}</div>
                 <p className="text-sm text-accent leading-relaxed">
@@ -107,11 +107,11 @@ export default function ExperiencePage() {
       {/* Prior Experience */}
       {prior.length > 0 && (
         <section>
-          <h2 className="text-xl mb-6">prior experience</h2>
+          <h2 className="text-lg md:text-xl mb-6">prior experience</h2>
           <div className="space-y-6">
             {prior.map((exp, index) => (
               <div key={index} className="border-b border-border pb-6 last:border-0">
-                <h3 className="text-base mb-1">{exp.title}</h3>
+                <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
                 <div className="text-xs text-accent mb-3">{exp.period} • {exp.location}</div>
                 <p className="text-sm text-accent leading-relaxed">
@@ -126,11 +126,11 @@ export default function ExperiencePage() {
       {/* Community */}
       {community.length > 0 && (
         <section>
-          <h2 className="text-xl mb-6">community & affiliations</h2>
+          <h2 className="text-lg md:text-xl mb-6">community & affiliations</h2>
           <div className="space-y-6">
             {community.map((exp, index) => (
               <div key={index} className="border-b border-border pb-6 last:border-0">
-                <h3 className="text-base mb-1">{exp.title}</h3>
+                <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
                 <div className="text-xs text-accent mb-3">{exp.period} • {exp.location}</div>
                 <p className="text-sm text-accent leading-relaxed">

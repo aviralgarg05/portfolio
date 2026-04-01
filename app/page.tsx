@@ -29,10 +29,10 @@ export default function Home() {
   const recentArticles = writing.slice(0, 3);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       {/* About Section */}
       <section id="about">
-        <h2 className="text-2xl mb-4">about me</h2>
+        <h2 className="text-xl md:text-2xl mb-4">about me</h2>
         <p className="text-sm text-accent leading-relaxed mb-4">
           i build ai/ml systems, contribute to open source, and publish research.
         </p>
@@ -49,21 +49,21 @@ export default function Home() {
 
       {/* Stats */}
       <section>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           <div>
-            <div className="text-3xl font-medium mb-1">
+            <div className="text-2xl md:text-3xl font-medium mb-1">
               <Counter end={profile.metrics.github.repos} />
             </div>
             <div className="text-xs text-accent">repositories</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">
+            <div className="text-2xl md:text-3xl font-medium mb-1">
               <Counter end={profile.metrics.github.prsMerged} />
             </div>
             <div className="text-xs text-accent">merged prs</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">
+            <div className="text-2xl md:text-3xl font-medium mb-1">
               <Counter end={profile.metrics.writing.devtoArticles} />
             </div>
             <div className="text-xs text-accent">articles</div>
@@ -74,7 +74,7 @@ export default function Home() {
       {/* Work Section */}
       <section id="work">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl">selected work</h2>
+          <h2 className="text-xl md:text-2xl">selected work</h2>
           <Link href="/work" className="text-xs text-accent hover:text-foreground transition-colors">
             view all →
           </Link>
@@ -82,10 +82,10 @@ export default function Home() {
         <div className="space-y-6">
           {featuredProjects.map((project) => (
             <div key={project.name} className="border-b border-border pb-6 last:border-0">
-              <h3 className="text-base mb-2 hover:opacity-70 transition-opacity">
+              <h3 className="text-sm md:text-base mb-2 hover:opacity-70 transition-opacity">
                 {project.name}
               </h3>
-              <p className="text-sm text-accent leading-relaxed mb-3">
+              <p className="text-xs md:text-sm text-accent leading-relaxed mb-3">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
@@ -109,32 +109,32 @@ export default function Home() {
       {/* Open Source */}
       <section id="open-source">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl">open source</h2>
+          <h2 className="text-xl md:text-2xl">open source</h2>
           <Link href="/open-source" className="text-xs text-accent hover:text-foreground transition-colors">
             view all →
           </Link>
         </div>
         
-        <div className="grid grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           <div>
-            <div className="text-2xl font-medium mb-1">{openSource.contributions.stats.totalPRs}</div>
+            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.totalPRs}</div>
             <div className="text-xs text-accent">pull requests</div>
           </div>
           <div>
-            <div className="text-2xl font-medium mb-1">{openSource.contributions.stats.mergedPRs}</div>
+            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.mergedPRs}</div>
             <div className="text-xs text-accent">merged</div>
           </div>
           <div>
-            <div className="text-2xl font-medium mb-1">{openSource.contributions.stats.issues}</div>
+            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.issues}</div>
             <div className="text-xs text-accent">issues</div>
           </div>
           <div>
-            <div className="text-2xl font-medium mb-1">{openSource.contributions.stats.comments}</div>
+            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.comments}</div>
             <div className="text-xs text-accent">comments</div>
           </div>
         </div>
 
-        <h3 className="text-sm text-accent mb-4">major contributions</h3>
+        <h3 className="text-xs md:text-sm text-accent mb-4">major contributions</h3>
         <div className="space-y-2">
           {openSource.contributions.reposContributed.map((repo) => (
             <a
@@ -142,7 +142,7 @@ export default function Home() {
               href={`https://github.com/${repo}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-sm hover:opacity-70 transition-opacity"
+              className="block text-xs md:text-sm hover:opacity-70 transition-opacity"
             >
               {repo} →
             </a>
@@ -153,7 +153,7 @@ export default function Home() {
       {/* Writing */}
       <section id="writing">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl">recent writing</h2>
+          <h2 className="text-xl md:text-2xl">recent writing</h2>
           <Link href="/writing" className="text-xs text-accent hover:text-foreground transition-colors">
             all articles →
           </Link>
@@ -167,7 +167,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="block border-b border-border pb-4 last:border-0 hover:opacity-70 transition-opacity"
             >
-              <h3 className="text-base mb-2">{article.title}</h3>
+              <h3 className="text-sm md:text-base mb-2">{article.title}</h3>
               <div className="flex items-center gap-4 text-xs text-accent">
                 <span>{article.platform}</span>
                 <span>{article.category}</span>

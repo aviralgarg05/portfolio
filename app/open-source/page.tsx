@@ -52,27 +52,27 @@ export default function OpenSourcePage() {
   ];
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       <section>
-        <h1 className="text-3xl mb-4">open source</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">open source</h1>
         <p className="text-sm text-accent leading-relaxed mb-6">
           active contributor across the github ecosystem. focused on infrastructure, databases, ai/ml tooling, and developer tools.
         </p>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-6 md:gap-8">
           <div>
-            <div className="text-3xl font-medium mb-1">{openSource.contributions.stats.totalPRs}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{openSource.contributions.stats.totalPRs}</div>
             <div className="text-xs text-accent">pull requests</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">{openSource.contributions.stats.mergedPRs}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{openSource.contributions.stats.mergedPRs}</div>
             <div className="text-xs text-accent">merged prs</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">{openSource.contributions.stats.issues}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{openSource.contributions.stats.issues}</div>
             <div className="text-xs text-accent">issues authored</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">{openSource.contributions.stats.comments}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{openSource.contributions.stats.comments}</div>
             <div className="text-xs text-accent">issue comments</div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function OpenSourcePage() {
 
       {/* Major Contributions */}
       <section>
-        <h2 className="text-xl mb-6">major contributions</h2>
+        <h2 className="text-lg md:text-xl mb-6">major contributions</h2>
         <div className="space-y-6">
           {majorContributions.map((contribution) => (
             <div key={contribution.repo} className="border-b border-border pb-6 last:border-0">
@@ -88,11 +88,11 @@ export default function OpenSourcePage() {
                 href={`https://github.com/${contribution.repo}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base hover:opacity-70 transition-opacity inline-block mb-2"
+                className="text-sm md:text-base hover:opacity-70 transition-opacity inline-block mb-2"
               >
                 {contribution.repo} →
               </a>
-              <p className="text-sm text-accent mb-3">{contribution.description}</p>
+              <p className="text-xs md:text-sm text-accent mb-3">{contribution.description}</p>
               <div className="flex flex-wrap gap-2">
                 {contribution.tech.map((tech) => (
                   <span key={tech} className="text-xs px-2 py-1 border border-border text-accent">
@@ -126,32 +126,32 @@ export default function OpenSourcePage() {
 
       {/* GitHub Stats */}
       <section>
-        <h2 className="text-xl mb-6">contribution activity</h2>
-        <div className="mb-8 border border-border p-4">
+        <h2 className="text-lg md:text-xl mb-6">contribution activity</h2>
+        <div className="mb-8 border border-border p-2 md:p-4 overflow-x-auto">
           <img 
             src="https://ghchart.rshah.org/000000/aviralgarg05" 
             alt="GitHub Contribution Graph"
-            className="w-full dark:invert"
+            className="w-full min-w-[600px] dark:invert"
           />
         </div>
         
-        <h3 className="text-sm text-accent mb-4">profile stats</h3>
+        <h3 className="text-xs md:text-sm text-accent mb-4">profile stats</h3>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between pb-2 border-b border-border">
-            <span className="text-accent">total repositories</span>
-            <span className="text-foreground">{profile.metrics.github.repos}</span>
+            <span className="text-accent text-xs md:text-sm">total repositories</span>
+            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.repos}</span>
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
-            <span className="text-accent">non-fork repos</span>
-            <span className="text-foreground">{profile.metrics.github.nonForkRepos}</span>
+            <span className="text-accent text-xs md:text-sm">non-fork repos</span>
+            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.nonForkRepos}</span>
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
-            <span className="text-accent">followers</span>
-            <span className="text-foreground">{profile.metrics.github.followers}</span>
+            <span className="text-accent text-xs md:text-sm">followers</span>
+            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.followers}</span>
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
-            <span className="text-accent">prs authored</span>
-            <span className="text-foreground">{profile.metrics.github.prsAuthored}</span>
+            <span className="text-accent text-xs md:text-sm">prs authored</span>
+            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.prsAuthored}</span>
           </div>
         </div>
       </section>

@@ -8,9 +8,9 @@ export default function WorkPage() {
   const other = projects.filter(p => !p.featured);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       <section>
-        <h1 className="text-3xl mb-4">work</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">work</h1>
         <p className="text-sm text-accent leading-relaxed">
           projects spanning ai/ml systems, developer tools, and open source contributions
         </p>
@@ -18,16 +18,16 @@ export default function WorkPage() {
 
       {/* Achievements */}
       <section>
-        <h2 className="text-xl mb-6">achievements</h2>
+        <h2 className="text-lg md:text-xl mb-6">achievements</h2>
         <div className="space-y-4">
           {achievements.map((achievement, index) => (
             <div key={index} className="border-b border-border pb-4 last:border-0">
-              <div className="flex items-start justify-between mb-2">
-                <h3 className="text-base">{achievement.title}</h3>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
+                <h3 className="text-sm md:text-base">{achievement.title}</h3>
                 <span className="text-xs text-accent">{achievement.year}</span>
               </div>
               {achievement.description && (
-                <p className="text-sm text-accent">{achievement.description}</p>
+                <p className="text-xs md:text-sm text-accent">{achievement.description}</p>
               )}
               {achievement.project && (
                 <span className="text-xs text-accent">project: {achievement.project}</span>
@@ -39,21 +39,21 @@ export default function WorkPage() {
 
       {/* Featured Projects */}
       <section>
-        <h2 className="text-xl mb-6">featured projects</h2>
-        <div className="space-y-8">
+        <h2 className="text-lg md:text-xl mb-6">featured projects</h2>
+        <div className="space-y-6 md:space-y-8">
           {featured.map((project) => (
-            <div key={project.name} className="border-b border-border pb-8 last:border-0">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg">{project.name}</h3>
+            <div key={project.name} className="border-b border-border pb-6 md:pb-8 last:border-0">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 gap-2">
+                <h3 className="text-base md:text-lg">{project.name}</h3>
                 {project.status && (
-                  <span className="text-xs px-2 py-1 border border-border text-accent">
+                  <span className="text-xs px-2 py-1 border border-border text-accent self-start">
                     {project.status}
                   </span>
                 )}
               </div>
               
               <p className="text-xs text-accent mb-2">{project.tagline}</p>
-              <p className="text-sm text-accent leading-relaxed mb-4">
+              <p className="text-xs md:text-sm text-accent leading-relaxed mb-4">
                 {project.description}
               </p>
 
@@ -66,7 +66,7 @@ export default function WorkPage() {
               </div>
 
               {project.metrics && (
-                <div className="flex gap-4 text-xs text-accent mb-4">
+                <div className="flex flex-wrap gap-4 text-xs text-accent mb-4">
                   {project.metrics.stars && <span>★ {project.metrics.stars}</span>}
                   {project.metrics.forks && <span>⑂ {project.metrics.forks}</span>}
                   {project.metrics.downloads && <span>↓ {project.metrics.downloads}</span>}
@@ -80,7 +80,7 @@ export default function WorkPage() {
                 </div>
               )}
 
-              <div className="flex gap-4 text-xs">
+              <div className="flex flex-wrap gap-4 text-xs">
                 {project.links.github && (
                   <a
                     href={project.links.github}
@@ -130,12 +130,12 @@ export default function WorkPage() {
       {/* Other Projects */}
       {other.length > 0 && (
         <section>
-          <h2 className="text-xl mb-6">other projects</h2>
+          <h2 className="text-lg md:text-xl mb-6">other projects</h2>
           <div className="space-y-6">
             {other.map((project) => (
               <div key={project.name} className="border-b border-border pb-6 last:border-0">
-                <h3 className="text-base mb-2">{project.name}</h3>
-                <p className="text-sm text-accent leading-relaxed mb-3">
+                <h3 className="text-sm md:text-base mb-2">{project.name}</h3>
+                <p className="text-xs md:text-sm text-accent leading-relaxed mb-3">
                   {project.description}
                 </p>
                 
@@ -153,7 +153,7 @@ export default function WorkPage() {
                   </div>
                 )}
 
-                <div className="flex gap-4 text-xs">
+                <div className="flex flex-wrap gap-4 text-xs">
                   {project.links.github && (
                     <a
                       href={project.links.github}

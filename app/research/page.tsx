@@ -4,23 +4,23 @@ import { research } from "@/data/profile";
 
 export default function ResearchPage() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       <section>
-        <h1 className="text-3xl mb-4">research</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">research</h1>
         <p className="text-sm text-accent leading-relaxed mb-6">
           active research pipeline in ai/ml systems, cybersecurity, and natural language processing.
         </p>
         <div className="grid grid-cols-3 gap-8">
           <div>
-            <div className="text-3xl font-medium mb-1">{research.status.underReview}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{research.status.underReview}</div>
             <div className="text-xs text-accent">under review</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">{research.status.readyToPublish}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{research.status.readyToPublish}</div>
             <div className="text-xs text-accent">ready to publish</div>
           </div>
           <div>
-            <div className="text-3xl font-medium mb-1">{research.status.underDevelopment}</div>
+            <div className="text-2xl md:text-3xl font-medium mb-1">{research.status.underDevelopment}</div>
             <div className="text-xs text-accent">in development</div>
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function ResearchPage() {
 
       {/* Research Projects */}
       <section>
-        <h2 className="text-xl mb-6">projects</h2>
+        <h2 className="text-lg md:text-xl mb-6">projects</h2>
         <div className="space-y-8">
           {research.projects.map((project, index) => (
             <div key={index} className="border-b border-border pb-8 last:border-0">
@@ -57,7 +57,7 @@ export default function ResearchPage() {
 
       {/* Research Themes */}
       <section>
-        <h2 className="text-xl mb-6">research themes</h2>
+        <h2 className="text-lg md:text-xl mb-6">research themes</h2>
         <div className="space-y-2">
           {research.themes.map((theme, index) => (
             <div key={index} className="text-sm text-accent">
@@ -69,7 +69,7 @@ export default function ResearchPage() {
 
       {/* Current Focus */}
       <section>
-        <h2 className="text-xl mb-6">areas of interest</h2>
+        <h2 className="text-lg md:text-xl mb-6">areas of interest</h2>
         <div className="space-y-3 text-sm text-accent leading-relaxed">
           <p>• multi-agent systems and frameworks</p>
           <p>• real-time ai systems with low latency</p>
@@ -82,7 +82,7 @@ export default function ResearchPage() {
 
       {/* Publications Note */}
       <section>
-        <h2 className="text-xl mb-6">publication status</h2>
+        <h2 className="text-lg md:text-xl mb-6">publication status</h2>
         <p className="text-sm text-accent leading-relaxed">
           i have {research.status.underReview} paper under review, {research.status.readyToPublish} papers ready to publish, 
           and {research.status.underDevelopment} research projects currently in development. updates will be posted as papers are published.

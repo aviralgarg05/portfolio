@@ -25,7 +25,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-background text-foreground">
         <Navigation />
-        <main className="ml-64 p-16 max-w-4xl">{children}</main>
+        <main className="pt-16 md:pt-0 md:ml-64 p-6 md:p-16 max-w-4xl">{children}</main>
       </body>
     </html>
   );

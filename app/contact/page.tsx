@@ -4,9 +4,9 @@ import { profile } from "@/data/profile";
 
 export default function ContactPage() {
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       <section>
-        <h1 className="text-3xl mb-4">contact</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">contact</h1>
         <p className="text-sm text-accent leading-relaxed">
           open to collaborations, consulting, and interesting problems in ai/ml systems.
         </p>
@@ -14,7 +14,7 @@ export default function ContactPage() {
 
       {/* Direct Contact */}
       <section>
-        <h2 className="text-xl mb-6">get in touch</h2>
+        <h2 className="text-lg md:text-xl mb-6">get in touch</h2>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between pb-3 border-b border-border">
             <span className="text-accent">email</span>
@@ -34,7 +34,7 @@ export default function ContactPage() {
 
       {/* Social Links */}
       <section>
-        <h2 className="text-xl mb-6">find me online</h2>
+        <h2 className="text-lg md:text-xl mb-6">find me online</h2>
         <div className="space-y-3 text-sm">
           <a
             href={profile.socials.github}
@@ -95,7 +95,7 @@ export default function ContactPage() {
 
       {/* What I'm Looking For */}
       <section>
-        <h2 className="text-xl mb-6">interested in</h2>
+        <h2 className="text-lg md:text-xl mb-6">interested in</h2>
         <div className="space-y-3 text-sm text-accent leading-relaxed">
           <p>• open source collaborations</p>
           <p>• ai/ml consulting projects</p>
@@ -108,7 +108,7 @@ export default function ContactPage() {
 
       {/* Response Time */}
       <section>
-        <h2 className="text-xl mb-6">note</h2>
+        <h2 className="text-lg md:text-xl mb-6">note</h2>
         <p className="text-sm text-accent leading-relaxed">
           i typically respond within 24-48 hours. for urgent matters, please mention it in the subject line or message.
         </p>
