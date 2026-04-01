@@ -67,16 +67,16 @@ export default function Navigation() {
 
             <div className="mt-8 pt-8 border-t border-border">
               <div className="flex gap-6 text-sm text-accent">
-                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform">
+                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-200 hover:scale-105 transform">
                   <FaGithub size={20} />
                 </a>
-                <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform">
+                <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-200 hover:scale-105 transform">
                   <FaTwitter size={20} />
                 </a>
-                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform">
+                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-200 hover:scale-105 transform">
                   <FaLinkedin size={20} />
                 </a>
-                <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform">
+                <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-200 hover:scale-105 transform">
                   <FaDev size={20} />
                 </a>
               </div>
@@ -126,7 +126,7 @@ export default function Navigation() {
               href={profile.socials.github} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform"
+              className="hover:text-foreground transition-all duration-200 hover:scale-105 transform"
               aria-label="GitHub"
             >
               <FaGithub size={18} />
@@ -135,7 +135,7 @@ export default function Navigation() {
               href={profile.socials.twitter} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform"
+              className="hover:text-foreground transition-all duration-200 hover:scale-105 transform"
               aria-label="Twitter"
             >
               <FaTwitter size={18} />
@@ -144,7 +144,7 @@ export default function Navigation() {
               href={profile.socials.linkedin} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform"
+              className="hover:text-foreground transition-all duration-200 hover:scale-105 transform"
               aria-label="LinkedIn"
             >
               <FaLinkedin size={18} />
@@ -153,7 +153,7 @@ export default function Navigation() {
               href={profile.socials.devto} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform"
+              className="hover:text-foreground transition-all duration-200 hover:scale-105 transform"
               aria-label="Dev.to"
             >
               <FaDev size={18} />

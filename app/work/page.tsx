@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { projects, achievements } from "@/data/profile";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Star, GitFork, Download, ExternalLink, Award } from "lucide-react";
 import { FaGithub, FaPython } from "react-icons/fa";
 import { StatusBadge } from "@/components/StatusBadge";
 import { TechTag } from "@/components/TechTag";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function WorkPage() {
   const featured = projects.filter(p => p.featured);
   const other = projects.filter(p => !p.featured);
+  const { ref: achievementsRef, opacity, y, scale } = useScrollAnimation();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -173,10 +175,8 @@ export default function WorkPage() {
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="text-xs px-2 py-1 border border-border text-accent">
-                      {tech}
-                    </span>
+                  {project.tech.map((tech, index) => (
+                    <TechTag key={tech} tech={tech} index={index} />
                   ))}
                 </div>
 
@@ -214,18 +214,22 @@ export default function WorkPage() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-        </section>
+        </motion.div>
+      </section>
       )}
 
       {/* Achievements */}
-      <section>
+      <motion.section
+        ref={achievementsRef}
+        style={{ opacity, y, scale }}
+      >
         <h2 className="text-lg md:text-xl mb-6">achievements</h2>
         <motion.div 
           className="space-y-4"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           {achievements.map((achievement, index) => (
             <motion.div 
@@ -250,7 +254,7 @@ export default function WorkPage() {
             </motion.div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
     </div>
   );
 }

@@ -3,6 +3,8 @@
 import { research } from "@/data/profile";
 import { motion } from "framer-motion";
 import { FileText, Clock, CheckCircle, Beaker, Lightbulb, BookOpen } from "lucide-react";
+import { StatusBadge } from "@/components/StatusBadge";
+import { TechTag } from "@/components/TechTag";
 
 export default function ResearchPage() {
   const containerVariants = {
@@ -92,9 +94,7 @@ export default function ResearchPage() {
             >
               <div className="flex items-start justify-between mb-3">
                 <h3 className="text-lg">{project.title}</h3>
-                <span className="text-xs px-2 py-1 border border-border text-accent">
-                  {project.status}
-                </span>
+                <StatusBadge status={project.status} />
               </div>
               
               {project.context && (
@@ -105,9 +105,7 @@ export default function ResearchPage() {
                 {project.description}
               </p>
 
-              <div className="text-xs px-2 py-1 border border-border text-accent inline-block">
-                {project.type}
-              </div>
+              <TechTag tech={project.type} index={0} />
             </motion.div>
           ))}
         </motion.div>

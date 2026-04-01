@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Counter from "@/components/Counter";
 import { profile, projects, openSource, writing } from "@/data/profile";
 import { ArrowRight, Star, GitFork, Heart } from "lucide-react";
+import { TechTag } from "@/components/TechTag";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -47,24 +48,21 @@ export default function Home() {
         </p>
         <div className="flex flex-wrap gap-2 mt-6">
           {["llms", "nlp", "machine learning", "research"].map((tag, index) => (
-            <motion.span 
+            <motion.div 
               key={tag}
-              className="text-xs px-3 py-1 border border-border text-accent hover:bg-muted transition-colors cursor-default"
-              whileHover={{ 
-                scale: 1.1,
-                rotate: [0, -1, 1, -1, 0],
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ 
                 opacity: 1, 
                 y: 0,
                 transition: { delay: 0.5 + index * 0.1 }
               }}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
             >
-              {tag}
-            </motion.span>
+              <TechTag tech={tag} index={index} />
+            </motion.div>
           ))}
         </div>
       </motion.section>
@@ -81,11 +79,11 @@ export default function Home() {
               key={stat.label}
               className="group"
               whileHover={{ 
-                scale: 1.08,
-                y: -5,
-                transition: { type: "spring", stiffness: 300, damping: 15 }
+                scale: 1.02,
+                y: -2,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
               }}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ 
                 opacity: 1, 
                 y: 0,
@@ -127,10 +125,8 @@ export default function Home() {
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
-                {project.tech.slice(0, 3).map((tech) => (
-                  <span key={tech} className="text-xs px-2 py-1 border border-border text-accent">
-                    {tech}
-                  </span>
+                {project.tech.slice(0, 3).map((tech, index) => (
+                  <TechTag key={tech} tech={tech} index={index} />
                 ))}
               </div>
               {project.metrics && (
