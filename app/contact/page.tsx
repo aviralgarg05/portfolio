@@ -2,7 +2,7 @@
 
 import { profile } from "@/data/profile";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Github, Linkedin, Twitter, Code, FileText, Package, ExternalLink, MessageCircle, Clock } from "lucide-react";
+import { Mail, MapPin, Globe, Link2, X, Code, FileText, Package, ExternalLink, MessageCircle, Clock } from "lucide-react";
 
 export default function ContactPage() {
   const containerVariants = {
@@ -92,7 +92,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Github className="w-4 h-4" /> github
+              <Globe className="w-4 h-4" /> github
             </span>
             <span className="text-foreground flex items-center gap-2">
               @aviralgarg05 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -107,7 +107,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Linkedin className="w-4 h-4" /> linkedin
+              <Link2 className="w-4 h-4" /> linkedin
             </span>
             <span className="text-foreground flex items-center gap-2">
               aviral-garg99 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -122,7 +122,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Twitter className="w-4 h-4" /> twitter
+              <X className="w-4 h-4" /> twitter
             </span>
             <span className="text-foreground flex items-center gap-2">
               @aviralgarg39805 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />

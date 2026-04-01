@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
 import { profile } from "@/data/profile";
-import { Github, Twitter, Linkedin, BookOpen, Menu, X } from "lucide-react";
+import { Globe, X, Link2, BookOpen, Menu, X as Close } from "lucide-react";
 
 const navItems = [
   { name: "about", path: "/" },
@@ -33,7 +33,7 @@ export default function Navigation() {
           className="text-foreground hover:opacity-70 transition-opacity"
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <Close size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -67,13 +67,13 @@ export default function Navigation() {
             <div className="mt-8 pt-8 border-t border-border">
               <div className="flex gap-6 text-sm text-accent">
                 <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <Github size={20} />
+                  <Globe size={20} />
                 </a>
                 <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <Twitter size={20} />
+                  <X size={20} />
                 </a>
                 <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <Linkedin size={20} />
+                  <Link2 size={20} />
                 </a>
                 <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
                   <BookOpen size={20} />
@@ -128,7 +128,7 @@ export default function Navigation() {
               className="hover:text-foreground transition-all duration-300 hover:scale-110"
               aria-label="GitHub"
             >
-              <Github size={18} />
+              <Globe size={18} />
             </a>
             <a 
               href={profile.socials.twitter} 
@@ -137,7 +137,7 @@ export default function Navigation() {
               className="hover:text-foreground transition-all duration-300 hover:scale-110"
               aria-label="Twitter"
             >
-              <Twitter size={18} />
+              <X size={18} />
             </a>
             <a 
               href={profile.socials.linkedin} 
@@ -146,7 +146,7 @@ export default function Navigation() {
               className="hover:text-foreground transition-all duration-300 hover:scale-110"
               aria-label="LinkedIn"
             >
-              <Linkedin size={18} />
+              <Link2 size={18} />
             </a>
             <a 
               href={profile.socials.devto} 

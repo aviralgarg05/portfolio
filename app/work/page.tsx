@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { projects, achievements } from "@/data/profile";
 import { motion } from "framer-motion";
-import { Star, GitFork, Download, ExternalLink, Github, Award, Package } from "lucide-react";
+import { Star, GitFork, Download, ExternalLink, Globe, Award, Package } from "lucide-react";
 
 export default function WorkPage() {
   const featured = projects.filter(p => p.featured);
@@ -112,7 +112,7 @@ export default function WorkPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                   >
-                    <Github className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
+                    <Globe className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
                 {project.links.pypi && (
@@ -199,7 +199,7 @@ export default function WorkPage() {
                       rel="noopener noreferrer"
                       className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                     >
-                      <Github className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
+                      <Globe className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
                   {project.links.live && (

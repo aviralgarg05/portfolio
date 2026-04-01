@@ -2,7 +2,7 @@
 
 import { openSource, profile } from "@/data/profile";
 import { motion } from "framer-motion";
-import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Github, Package, Code2, Activity } from "lucide-react";
+import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Globe, Package, Code2, Activity } from "lucide-react";
 
 export default function OpenSourcePage() {
   const majorContributions = [
@@ -151,7 +151,7 @@ export default function OpenSourcePage() {
                 rel="noopener noreferrer"
                 className="text-sm md:text-base hover:opacity-70 transition-opacity inline-flex items-center gap-2 mb-2"
               >
-                <Github className="w-4 h-4" /> {contribution.repo} <ExternalLink className="w-3 h-3" />
+                <Globe className="w-4 h-4" /> {contribution.repo} <ExternalLink className="w-3 h-3" />
               </a>
               <p className="text-xs md:text-sm text-accent mb-3">{contribution.description}</p>
               <div className="flex flex-wrap gap-2">
@@ -190,7 +190,7 @@ export default function OpenSourcePage() {
                 rel="noopener noreferrer"
                 className="text-sm hover:opacity-70 transition-opacity inline-flex items-center gap-2"
               >
-                <Github className="w-4 h-4" /> {repo} <ExternalLink className="w-3 h-3" />
+                <Globe className="w-4 h-4" /> {repo} <ExternalLink className="w-3 h-3" />
               </a>
             </motion.div>
           ))}
@@ -262,7 +262,7 @@ export default function OpenSourcePage() {
             rel="noopener noreferrer"
             className="block hover:opacity-70 transition-opacity flex items-center gap-2"
           >
-            <Github className="w-4 h-4" /> github <ExternalLink className="w-3 h-3" />
+            <Globe className="w-4 h-4" /> github <ExternalLink className="w-3 h-3" />
           </a>
           <a
             href={profile.socials.pypi}

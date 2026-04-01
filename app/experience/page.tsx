@@ -2,7 +2,7 @@
 
 import { experience } from "@/data/profile";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Users, Clock, MapPin, ExternalLink, Github } from "lucide-react";
+import { Briefcase, GraduationCap, Users, Clock, MapPin, ExternalLink, Globe } from "lucide-react";
 
 export default function ExperiencePage() {
   const current = experience.filter(exp => exp.type === "current");
@@ -87,7 +87,7 @@ export default function ExperiencePage() {
                         rel="noopener noreferrer"
                         className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                       >
-                        <Github className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
+                        <Globe className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
                     {exp.links.website && (
