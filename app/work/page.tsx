@@ -16,27 +16,6 @@ export default function WorkPage() {
         </p>
       </section>
 
-      {/* Achievements */}
-      <section>
-        <h2 className="text-lg md:text-xl mb-6">achievements</h2>
-        <div className="space-y-4">
-          {achievements.map((achievement, index) => (
-            <div key={index} className="border-b border-border pb-4 last:border-0">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
-                <h3 className="text-sm md:text-base">{achievement.title}</h3>
-                <span className="text-xs text-accent">{achievement.year}</span>
-              </div>
-              {achievement.description && (
-                <p className="text-xs md:text-sm text-accent">{achievement.description}</p>
-              )}
-              {achievement.project && (
-                <span className="text-xs text-accent">project: {achievement.project}</span>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Featured Projects */}
       <section>
         <h2 className="text-lg md:text-xl mb-6">featured projects</h2>
@@ -180,6 +159,27 @@ export default function WorkPage() {
           </div>
         </section>
       )}
+
+      {/* Achievements */}
+      <section>
+        <h2 className="text-lg md:text-xl mb-6">achievements</h2>
+        <div className="space-y-4">
+          {achievements.map((achievement, index) => (
+            <div key={index} className="border-b border-border pb-4 last:border-0">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
+                <h3 className="text-sm md:text-base">{achievement.title}</h3>
+                <span className="text-xs text-accent">{achievement.year}</span>
+              </div>
+              {achievement.description && (
+                <p className="text-xs md:text-sm text-accent">{achievement.description}</p>
+              )}
+              {achievement.project && (
+                <span className="text-xs text-accent">project: {achievement.project}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

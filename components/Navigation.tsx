@@ -8,11 +8,11 @@ import { profile } from "@/data/profile";
 
 const navItems = [
   { name: "about", path: "/" },
+  { name: "experience", path: "/experience" },
   { name: "work", path: "/work" },
   { name: "open source", path: "/open-source" },
   { name: "research", path: "/research" },
   { name: "writing", path: "/writing" },
-  { name: "experience", path: "/experience" },
   { name: "contact", path: "/contact" },
 ];
 
