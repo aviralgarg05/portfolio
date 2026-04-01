@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
 import { profile } from "@/data/profile";
-import { Globe, X, Link2, BookOpen, Menu, X as Close } from "lucide-react";
+import { BookOpen, Menu, X as Close } from "lucide-react";
+import { FaGithub, FaTwitter, FaLinkedin, FaDev } from "react-icons/fa";
 
 const navItems = [
   { name: "about", path: "/" },
@@ -66,17 +67,17 @@ export default function Navigation() {
 
             <div className="mt-8 pt-8 border-t border-border">
               <div className="flex gap-6 text-sm text-accent">
-                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <Globe size={20} />
+                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform">
+                  <FaGithub size={20} />
                 </a>
-                <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <X size={20} />
+                <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform">
+                  <FaTwitter size={20} />
                 </a>
-                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <Link2 size={20} />
+                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform">
+                  <FaLinkedin size={20} />
                 </a>
-                <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  <BookOpen size={20} />
+                <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform">
+                  <FaDev size={20} />
                 </a>
               </div>
             </div>
@@ -125,37 +126,37 @@ export default function Navigation() {
               href={profile.socials.github} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform"
               aria-label="GitHub"
             >
-              <Globe size={18} />
+              <FaGithub size={18} />
             </a>
             <a 
               href={profile.socials.twitter} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform"
               aria-label="Twitter"
             >
-              <X size={18} />
+              <FaTwitter size={18} />
             </a>
             <a 
               href={profile.socials.linkedin} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:rotate-12 transform"
               aria-label="LinkedIn"
             >
-              <Link2 size={18} />
+              <FaLinkedin size={18} />
             </a>
             <a 
               href={profile.socials.devto} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              className="hover:text-foreground transition-all duration-300 hover:scale-125 hover:-rotate-12 transform"
               aria-label="Dev.to"
             >
-              <BookOpen size={18} />
+              <FaDev size={18} />
             </a>
           </div>
           <div className="mt-4 text-xs text-accent">

@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { projects, achievements } from "@/data/profile";
 import { motion } from "framer-motion";
-import { Star, GitFork, Download, ExternalLink, Globe, Award, Package } from "lucide-react";
+import { Star, GitFork, Download, ExternalLink, Award } from "lucide-react";
+import { FaGithub, FaPython } from "react-icons/fa";
+import { StatusBadge } from "@/components/StatusBadge";
+import { TechTag } from "@/components/TechTag";
 
 export default function WorkPage() {
   const featured = projects.filter(p => p.featured);
@@ -58,9 +61,7 @@ export default function WorkPage() {
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 gap-2">
                 <h3 className="text-base md:text-lg">{project.name}</h3>
                 {project.status && (
-                  <span className="text-xs px-2 py-1 border border-border text-accent self-start">
-                    {project.status}
-                  </span>
+                  <StatusBadge status={project.status} />
                 )}
               </div>
               
@@ -70,10 +71,8 @@ export default function WorkPage() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech) => (
-                  <span key={tech} className="text-xs px-2 py-1 border border-border text-accent">
-                    {tech}
-                  </span>
+                {project.tech.map((tech, index) => (
+                  <TechTag key={tech} tech={tech} index={index} />
                 ))}
               </div>
 
@@ -112,7 +111,7 @@ export default function WorkPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                   >
-                    <Globe className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
+                     <FaGithub className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
                 {project.links.pypi && (
@@ -122,7 +121,7 @@ export default function WorkPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                   >
-                    <Package className="w-3 h-3" /> pypi <ExternalLink className="w-3 h-3" />
+                     <FaPython className="w-3 h-3" /> pypi <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
                 {project.links.live && (
@@ -199,7 +198,7 @@ export default function WorkPage() {
                       rel="noopener noreferrer"
                       className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                     >
-                      <Globe className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
+                      <FaGithub className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
                   {project.links.live && (

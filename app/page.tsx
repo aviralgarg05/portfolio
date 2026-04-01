@@ -46,12 +46,22 @@ export default function Home() {
           currently co-founding waysorted. previously at drdo. active contributor to major oss projects.
         </p>
         <div className="flex flex-wrap gap-2 mt-6">
-          {["llms", "nlp", "machine learning", "research"].map((tag) => (
+          {["llms", "nlp", "machine learning", "research"].map((tag, index) => (
             <motion.span 
               key={tag}
               className="text-xs px-3 py-1 border border-border text-accent hover:bg-muted transition-colors cursor-default"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -1, 1, -1, 0],
+                transition: { duration: 0.3 }
+              }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { delay: 0.5 + index * 0.1 }
+              }}
             >
               {tag}
             </motion.span>
@@ -70,8 +80,17 @@ export default function Home() {
             <motion.div 
               key={stat.label}
               className="group"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ 
+                scale: 1.08,
+                y: -5,
+                transition: { type: "spring", stiffness: 300, damping: 15 }
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { delay: 0.2, type: "spring", stiffness: 100 }
+              }}
             >
               <div className="text-2xl md:text-3xl font-medium mb-1 group-hover:text-accent transition-colors">
                 <Counter end={stat.value} />

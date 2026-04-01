@@ -2,7 +2,8 @@
 
 import { profile } from "@/data/profile";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Globe, Link2, X, Code, FileText, Package, ExternalLink, MessageCircle, Clock } from "lucide-react";
+import { Mail, MapPin, ExternalLink, MessageCircle, Clock } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter, FaDev, FaCode, FaPython } from "react-icons/fa";
 
 export default function ContactPage() {
   const containerVariants = {
@@ -92,7 +93,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Globe className="w-4 h-4" /> github
+              <FaGithub className="w-4 h-4" /> github
             </span>
             <span className="text-foreground flex items-center gap-2">
               @aviralgarg05 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -107,7 +108,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Link2 className="w-4 h-4" /> linkedin
+              <FaLinkedin className="w-4 h-4" /> linkedin
             </span>
             <span className="text-foreground flex items-center gap-2">
               aviral-garg99 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -122,7 +123,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <X className="w-4 h-4" /> twitter
+              <FaTwitter className="w-4 h-4" /> twitter
             </span>
             <span className="text-foreground flex items-center gap-2">
               @aviralgarg39805 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -137,7 +138,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <FileText className="w-4 h-4" /> dev.to
+              <FaDev className="w-4 h-4" /> dev.to
             </span>
             <span className="text-foreground flex items-center gap-2">
               @aviralgarg05 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -152,7 +153,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Code className="w-4 h-4" /> geeksforgeeks
+              <FaCode className="w-4 h-4" /> geeksforgeeks
             </span>
             <span className="text-foreground flex items-center gap-2">
               gargaviwmuu <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -167,7 +168,7 @@ export default function ContactPage() {
             whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
-              <Package className="w-4 h-4" /> pypi
+              <FaPython className="w-4 h-4" /> pypi
             </span>
             <span className="text-foreground flex items-center gap-2">
               Aviral_Garg <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />

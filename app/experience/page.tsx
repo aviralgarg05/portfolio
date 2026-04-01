@@ -2,7 +2,9 @@
 
 import { experience } from "@/data/profile";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Users, Clock, MapPin, ExternalLink, Globe } from "lucide-react";
+import { Briefcase, GraduationCap, Users, Clock, MapPin, ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+import { StatusBadge } from "@/components/StatusBadge";
 
 export default function ExperiencePage() {
   const current = experience.filter(exp => exp.type === "current");
@@ -62,9 +64,7 @@ export default function ExperiencePage() {
               >
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg">{exp.title}</h3>
-                  <span className="text-xs px-2 py-1 border border-border text-accent">
-                    active
-                  </span>
+                  <StatusBadge status="active" />
                 </div>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
                 <div className="text-xs text-accent mb-3 flex flex-wrap items-center gap-3">
@@ -87,7 +87,7 @@ export default function ExperiencePage() {
                         rel="noopener noreferrer"
                         className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
                       >
-                        <Globe className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
+                         <FaGithub className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
                     {exp.links.website && (

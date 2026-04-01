@@ -2,7 +2,9 @@
 
 import { openSource, profile } from "@/data/profile";
 import { motion } from "framer-motion";
-import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Globe, Package, Code2, Activity } from "lucide-react";
+import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Code2, Activity } from "lucide-react";
+import { FaGithub, FaPython } from "react-icons/fa";
+import { TechTag } from "@/components/TechTag";
 
 export default function OpenSourcePage() {
   const majorContributions = [
@@ -151,14 +153,12 @@ export default function OpenSourcePage() {
                 rel="noopener noreferrer"
                 className="text-sm md:text-base hover:opacity-70 transition-opacity inline-flex items-center gap-2 mb-2"
               >
-                <Globe className="w-4 h-4" /> {contribution.repo} <ExternalLink className="w-3 h-3" />
+                <FaGithub className="w-4 h-4" /> {contribution.repo} <ExternalLink className="w-3 h-3" />
               </a>
               <p className="text-xs md:text-sm text-accent mb-3">{contribution.description}</p>
               <div className="flex flex-wrap gap-2">
-                {contribution.tech.map((tech) => (
-                  <span key={tech} className="text-xs px-2 py-1 border border-border text-accent">
-                    {tech}
-                  </span>
+                {contribution.tech.map((tech, index) => (
+                  <TechTag key={tech} tech={tech} index={index} />
                 ))}
               </div>
             </motion.div>
@@ -169,7 +169,7 @@ export default function OpenSourcePage() {
       {/* Personal Open Source */}
       <section>
         <h2 className="text-xl mb-6 flex items-center gap-2">
-          <Package className="w-5 h-5" /> my open source projects
+          <FaPython className="w-5 h-5" /> my open source projects
         </h2>
         <motion.div 
           className="space-y-4"
@@ -190,7 +190,7 @@ export default function OpenSourcePage() {
                 rel="noopener noreferrer"
                 className="text-sm hover:opacity-70 transition-opacity inline-flex items-center gap-2"
               >
-                <Globe className="w-4 h-4" /> {repo} <ExternalLink className="w-3 h-3" />
+                <FaGithub className="w-4 h-4" /> {repo} <ExternalLink className="w-3 h-3" />
               </a>
             </motion.div>
           ))}
@@ -262,7 +262,7 @@ export default function OpenSourcePage() {
             rel="noopener noreferrer"
             className="block hover:opacity-70 transition-opacity flex items-center gap-2"
           >
-            <Globe className="w-4 h-4" /> github <ExternalLink className="w-3 h-3" />
+            <FaGithub className="w-4 h-4" /> github <ExternalLink className="w-3 h-3" />
           </a>
           <a
             href={profile.socials.pypi}
@@ -270,7 +270,7 @@ export default function OpenSourcePage() {
             rel="noopener noreferrer"
             className="block hover:opacity-70 transition-opacity flex items-center gap-2"
           >
-            <Package className="w-4 h-4" /> pypi <ExternalLink className="w-3 h-3" />
+            <FaPython className="w-4 h-4" /> pypi <ExternalLink className="w-3 h-3" />
           </a>
         </div>
       </section>
