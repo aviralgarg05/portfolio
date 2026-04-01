@@ -6,6 +6,7 @@ import Counter from "@/components/Counter";
 import { profile, projects, openSource, writing } from "@/data/profile";
 import { ArrowRight, Star, GitFork, Heart } from "lucide-react";
 import { TechTag } from "@/components/TechTag";
+import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,6 +30,11 @@ const itemVariants = {
 export default function Home() {
   const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
   const recentArticles = writing.slice(0, 3);
+  
+  // Scroll animations for different sections
+  const { ref: workRef, opacity: workOpacity, y: workY, scale: workScale } = useScrollAnimation();
+  const { ref: statsRef, opacity: statsOpacity, y: statsY, scale: statsScale } = useScrollAnimation();
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
 
   return (
     <motion.div 
@@ -39,15 +45,15 @@ export default function Home() {
     >
       {/* About Section */}
       <motion.section id="about" variants={itemVariants}>
-        <h2 className="text-xl md:text-2xl mb-4">about me</h2>
+        <h2 className="text-xl md:text-2xl mb-4">About Me</h2>
         <p className="text-sm text-accent leading-relaxed mb-4">
-          i build ai/ml systems, contribute to open source, and publish research.
+          I build AI/ML systems, contribute to open source, and publish research.
         </p>
         <p className="text-sm text-accent leading-relaxed mb-4">
-          currently co-founding waysorted. previously at drdo. active contributor to major oss projects.
+          Currently co-founding Waysorted. Previously at DRDO. Active contributor to major OSS projects.
         </p>
         <div className="flex flex-wrap gap-2 mt-6">
-          {["llms", "nlp", "machine learning", "research"].map((tag, index) => (
+          {["LLMs", "NLP", "Machine Learning", "Research"].map((tag, index) => (
             <motion.div 
               key={tag}
               initial={{ opacity: 0, y: 20 }}
@@ -68,26 +74,31 @@ export default function Home() {
       </motion.section>
 
       {/* Stats */}
-      <motion.section variants={itemVariants}>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+      <motion.section 
+        ref={statsRef}
+        style={{ opacity: statsOpacity, y: statsY, scale: statsScale }}
+        variants={itemVariants}
+      >
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {[
-            { label: "repositories", value: profile.metrics.github.repos },
-            { label: "merged prs", value: profile.metrics.github.prsMerged },
-            { label: "articles", value: profile.metrics.writing.devtoArticles }
+            { label: "Repositories", value: profile.metrics.github.repos },
+            { label: "Merged PRs", value: profile.metrics.github.prsMerged },
+            { label: "Articles", value: profile.metrics.writing.devtoArticles }
           ].map((stat) => (
             <motion.div 
               key={stat.label}
               className="group"
+              variants={itemVariants}
               whileHover={{ 
                 scale: 1.02,
                 y: -2,
                 transition: { type: "spring", stiffness: 300, damping: 20 }
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                transition: { delay: 0.2, type: "spring", stiffness: 100 }
               }}
             >
               <div className="text-2xl md:text-3xl font-medium mb-1 group-hover:text-accent transition-colors">
@@ -96,27 +107,36 @@ export default function Home() {
               <div className="text-xs text-accent">{stat.label}</div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.section>
 
       {/* Work Section */}
-      <motion.section id="work" variants={itemVariants}>
+      <motion.section 
+        id="work" 
+        ref={workRef}
+        style={{ opacity: workOpacity, y: workY, scale: workScale }}
+        variants={itemVariants}
+      >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl">selected work</h2>
+          <h2 className="text-xl md:text-2xl">Selected Work</h2>
           <Link href="/work" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
-            view all
+            View All
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-        <div className="space-y-6">
+        <motion.div 
+          className="space-y-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {featuredProjects.map((project, index) => (
             <motion.div 
               key={project.name} 
-              className="border-b border-border pb-6 last:border-0 group"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ x: 5 }}
+              className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+              variants={itemVariants}
+              whileHover={{ x: 4 }}
             >
               <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors">
                 {project.name}
@@ -145,25 +165,25 @@ export default function Home() {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.section>
 
       {/* Open Source */}
       <motion.section id="open-source" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl">open source</h2>
+          <h2 className="text-xl md:text-2xl">Open Source</h2>
           <Link href="/open-source" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
-            view all
+            View All
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
         
         <div className="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
           {[
-            { label: "pull requests", value: openSource.contributions.stats.totalPRs },
-            { label: "merged", value: openSource.contributions.stats.mergedPRs },
-            { label: "issues", value: openSource.contributions.stats.issues },
-            { label: "comments", value: openSource.contributions.stats.comments }
+            { label: "Pull Requests", value: openSource.contributions.stats.totalPRs },
+            { label: "Merged", value: openSource.contributions.stats.mergedPRs },
+            { label: "Issues", value: openSource.contributions.stats.issues },
+            { label: "Comments", value: openSource.contributions.stats.comments }
           ].map((stat) => (
             <motion.div 
               key={stat.label}

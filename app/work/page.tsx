@@ -7,29 +7,15 @@ import { Star, GitFork, Download, ExternalLink, Award } from "lucide-react";
 import { FaGithub, FaPython } from "react-icons/fa";
 import { StatusBadge } from "@/components/StatusBadge";
 import { TechTag } from "@/components/TechTag";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function WorkPage() {
   const featured = projects.filter(p => p.featured);
   const other = projects.filter(p => !p.featured);
   const { ref: achievementsRef, opacity, y, scale } = useScrollAnimation();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
+  const { ref: featuredRef, opacity: featuredOpacity, y: featuredY, scale: featuredScale } = useScrollAnimation();
+  const { ref: otherRef, opacity: otherOpacity, y: otherY, scale: otherScale } = useScrollAnimation();
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -38,20 +24,24 @@ export default function WorkPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-2xl md:text-3xl mb-4">work</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">Work</h1>
         <p className="text-sm text-accent leading-relaxed">
-          projects spanning ai/ml systems, developer tools, and open source contributions
+          Projects spanning AI/ML systems, developer tools, and open source contributions
         </p>
       </motion.section>
 
       {/* Featured Projects */}
-      <section>
-        <h2 className="text-lg md:text-xl mb-6">featured projects</h2>
+      <motion.section
+        ref={featuredRef}
+        style={{ opacity: featuredOpacity, y: featuredY, scale: featuredScale }}
+      >
+        <h2 className="text-lg md:text-xl mb-6">Featured Projects</h2>
         <motion.div 
           className="space-y-6 md:space-y-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           {featured.map((project) => (
             <motion.div 
@@ -150,17 +140,21 @@ export default function WorkPage() {
             </motion.div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* Other Projects */}
       {other.length > 0 && (
-        <section>
-          <h2 className="text-lg md:text-xl mb-6">other projects</h2>
+        <motion.section
+          ref={otherRef}
+          style={{ opacity: otherOpacity, y: otherY, scale: otherScale }}
+        >
+          <h2 className="text-lg md:text-xl mb-6">Other Projects</h2>
           <motion.div 
             className="space-y-6"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             {other.map((project) => (
               <motion.div 
@@ -215,7 +209,7 @@ export default function WorkPage() {
               </motion.div>
             ))}
         </motion.div>
-      </section>
+      </motion.section>
       )}
 
       {/* Achievements */}
@@ -223,7 +217,7 @@ export default function WorkPage() {
         ref={achievementsRef}
         style={{ opacity, y, scale }}
       >
-        <h2 className="text-lg md:text-xl mb-6">achievements</h2>
+        <h2 className="text-lg md:text-xl mb-6">Achievements</h2>
         <motion.div 
           className="space-y-4"
           variants={containerVariants}

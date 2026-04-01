@@ -88,9 +88,9 @@ export default function OpenSourcePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-2xl md:text-3xl mb-4">open source</h1>
+        <h1 className="text-2xl md:text-3xl mb-4">Open Source</h1>
         <p className="text-sm text-accent leading-relaxed mb-6">
-          active contributor across the github ecosystem. focused on infrastructure, databases, ai/ml tooling, and developer tools.
+          Active contributor across the GitHub ecosystem. Focused on infrastructure, databases, AI/ML tooling, and developer tools.
         </p>
         <motion.div 
           className="grid grid-cols-2 gap-6 md:gap-8"
