@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Counter from "@/components/Counter";
 import { profile, projects, openSource, writing } from "@/data/profile";
+import { ArrowRight, Star, GitFork, Heart } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,9 +30,14 @@ export default function Home() {
   const recentArticles = writing.slice(0, 3);
 
   return (
-    <div className="space-y-12 md:space-y-16">
+    <motion.div 
+      className="space-y-12 md:space-y-16"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {/* About Section */}
-      <section id="about">
+      <motion.section id="about" variants={itemVariants}>
         <h2 className="text-xl md:text-2xl mb-4">about me</h2>
         <p className="text-sm text-accent leading-relaxed mb-4">
           i build ai/ml systems, contribute to open source, and publish research.
@@ -40,49 +46,62 @@ export default function Home() {
           currently co-founding waysorted. previously at drdo. active contributor to major oss projects.
         </p>
         <div className="flex flex-wrap gap-2 mt-6">
-          <span className="text-xs px-3 py-1 border border-border text-accent">llms</span>
-          <span className="text-xs px-3 py-1 border border-border text-accent">nlp</span>
-          <span className="text-xs px-3 py-1 border border-border text-accent">machine learning</span>
-          <span className="text-xs px-3 py-1 border border-border text-accent">research</span>
+          {["llms", "nlp", "machine learning", "research"].map((tag) => (
+            <motion.span 
+              key={tag}
+              className="text-xs px-3 py-1 border border-border text-accent hover:bg-muted transition-colors cursor-default"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {tag}
+            </motion.span>
+          ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Stats */}
-      <section>
+      <motion.section variants={itemVariants}>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-          <div>
-            <div className="text-2xl md:text-3xl font-medium mb-1">
-              <Counter end={profile.metrics.github.repos} />
-            </div>
-            <div className="text-xs text-accent">repositories</div>
-          </div>
-          <div>
-            <div className="text-2xl md:text-3xl font-medium mb-1">
-              <Counter end={profile.metrics.github.prsMerged} />
-            </div>
-            <div className="text-xs text-accent">merged prs</div>
-          </div>
-          <div>
-            <div className="text-2xl md:text-3xl font-medium mb-1">
-              <Counter end={profile.metrics.writing.devtoArticles} />
-            </div>
-            <div className="text-xs text-accent">articles</div>
-          </div>
+          {[
+            { label: "repositories", value: profile.metrics.github.repos },
+            { label: "merged prs", value: profile.metrics.github.prsMerged },
+            { label: "articles", value: profile.metrics.writing.devtoArticles }
+          ].map((stat) => (
+            <motion.div 
+              key={stat.label}
+              className="group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="text-2xl md:text-3xl font-medium mb-1 group-hover:text-accent transition-colors">
+                <Counter end={stat.value} />
+              </div>
+              <div className="text-xs text-accent">{stat.label}</div>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Work Section */}
-      <section id="work">
+      <motion.section id="work" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl md:text-2xl">selected work</h2>
-          <Link href="/work" className="text-xs text-accent hover:text-foreground transition-colors">
-            view all →
+          <Link href="/work" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
+            view all
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
         <div className="space-y-6">
-          {featuredProjects.map((project) => (
-            <div key={project.name} className="border-b border-border pb-6 last:border-0">
-              <h3 className="text-sm md:text-base mb-2 hover:opacity-70 transition-opacity">
+          {featuredProjects.map((project, index) => (
+            <motion.div 
+              key={project.name} 
+              className="border-b border-border pb-6 last:border-0 group"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ x: 5 }}
+            >
+              <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors">
                 {project.name}
               </h3>
               <p className="text-xs md:text-sm text-accent leading-relaxed mb-3">
@@ -97,86 +116,108 @@ export default function Home() {
               </div>
               {project.metrics && (
                 <div className="flex gap-4 text-xs text-accent">
-                  {project.metrics.stars && <span>★ {project.metrics.stars}</span>}
-                  {project.metrics.forks && <span>⑂ {project.metrics.forks}</span>}
+                  {project.metrics.stars && (
+                    <span className="flex items-center gap-1">
+                      <Star size={12} /> {project.metrics.stars}
+                    </span>
+                  )}
+                  {project.metrics.forks && (
+                    <span className="flex items-center gap-1">
+                      <GitFork size={12} /> {project.metrics.forks}
+                    </span>
+                  )}
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Open Source */}
-      <section id="open-source">
+      <motion.section id="open-source" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl md:text-2xl">open source</h2>
-          <Link href="/open-source" className="text-xs text-accent hover:text-foreground transition-colors">
-            view all →
+          <Link href="/open-source" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
+            view all
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
         
         <div className="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-          <div>
-            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.totalPRs}</div>
-            <div className="text-xs text-accent">pull requests</div>
-          </div>
-          <div>
-            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.mergedPRs}</div>
-            <div className="text-xs text-accent">merged</div>
-          </div>
-          <div>
-            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.issues}</div>
-            <div className="text-xs text-accent">issues</div>
-          </div>
-          <div>
-            <div className="text-xl md:text-2xl font-medium mb-1">{openSource.contributions.stats.comments}</div>
-            <div className="text-xs text-accent">comments</div>
-          </div>
+          {[
+            { label: "pull requests", value: openSource.contributions.stats.totalPRs },
+            { label: "merged", value: openSource.contributions.stats.mergedPRs },
+            { label: "issues", value: openSource.contributions.stats.issues },
+            { label: "comments", value: openSource.contributions.stats.comments }
+          ].map((stat) => (
+            <motion.div 
+              key={stat.label}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="text-xl md:text-2xl font-medium mb-1">{stat.value}</div>
+              <div className="text-xs text-accent">{stat.label}</div>
+            </motion.div>
+          ))}
         </div>
 
         <h3 className="text-xs md:text-sm text-accent mb-4">major contributions</h3>
         <div className="space-y-2">
-          {openSource.contributions.reposContributed.map((repo) => (
-            <a
+          {openSource.contributions.reposContributed.map((repo, index) => (
+            <motion.a
               key={repo}
               href={`https://github.com/${repo}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-xs md:text-sm hover:opacity-70 transition-opacity"
+              className="block text-xs md:text-sm hover:text-foreground transition-all duration-300 group flex items-center gap-2"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ x: 5 }}
             >
-              {repo} →
-            </a>
+              {repo}
+              <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+            </motion.a>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Writing */}
-      <section id="writing">
+      <motion.section id="writing" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl md:text-2xl">recent writing</h2>
-          <Link href="/writing" className="text-xs text-accent hover:text-foreground transition-colors">
-            all articles →
+          <Link href="/writing" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
+            all articles
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
         <div className="space-y-4">
-          {recentArticles.map((article) => (
-            <a
+          {recentArticles.map((article, index) => (
+            <motion.a
               key={article.title}
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border-b border-border pb-4 last:border-0 hover:opacity-70 transition-opacity"
+              className="block border-b border-border pb-4 last:border-0 group"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ x: 5 }}
             >
-              <h3 className="text-sm md:text-base mb-2">{article.title}</h3>
+              <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors">{article.title}</h3>
               <div className="flex items-center gap-4 text-xs text-accent">
                 <span>{article.platform}</span>
                 <span>{article.category}</span>
-                {article.reactions && <span>❤ {article.reactions}</span>}
+                {article.reactions && (
+                  <span className="flex items-center gap-1">
+                    <Heart size={12} /> {article.reactions}
+                  </span>
+                )}
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 }

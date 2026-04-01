@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
 import { profile } from "@/data/profile";
+import { Github, Twitter, Linkedin, BookOpen, Menu, X } from "lucide-react";
 
 const navItems = [
   { name: "about", path: "/" },
@@ -24,27 +25,22 @@ export default function Navigation() {
     <>
       {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background z-50 flex items-center justify-between px-6">
-        <Link href="/" className="text-lg font-medium">
+        <Link href="/" className="text-lg font-medium hover:opacity-70 transition-opacity">
           aviral garg
         </Link>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-foreground"
+          className="text-foreground hover:opacity-70 transition-opacity"
+          aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-background z-40 pt-16"
+          className="md:hidden fixed inset-0 bg-background z-40 pt-16 animate-in fade-in duration-200"
           onClick={() => setMobileMenuOpen(false)}
         >
           <nav className="p-6">
@@ -52,12 +48,12 @@ export default function Navigation() {
               {navItems.map((item) => {
                 const isActive = pathname === item.path;
                 return (
-                  <li key={item.path}>
+                  <li key={item.path} className="animate-in slide-in-from-left duration-300">
                     <Link
                       href={item.path}
                       className={clsx(
                         "block text-base transition-colors",
-                        isActive ? "text-foreground" : "text-accent"
+                        isActive ? "text-foreground" : "text-accent hover:text-foreground"
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -69,18 +65,18 @@ export default function Navigation() {
             </ul>
 
             <div className="mt-8 pt-8 border-t border-border">
-              <div className="flex flex-col gap-3 text-sm text-accent">
-                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer">
-                  github
+              <div className="flex gap-6 text-sm text-accent">
+                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  <Github size={20} />
                 </a>
-                <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer">
-                  twitter
+                <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  <Twitter size={20} />
                 </a>
-                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer">
-                  linkedin
+                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  <Linkedin size={20} />
                 </a>
-                <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer">
-                  dev.to
+                <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  <BookOpen size={20} />
                 </a>
               </div>
             </div>
@@ -93,7 +89,7 @@ export default function Navigation() {
         <div className="mb-12">
           <Link 
             href="/" 
-            className="text-lg font-medium hover:opacity-70 transition-opacity"
+            className="text-lg font-medium hover:opacity-70 transition-all duration-300 hover:translate-x-1 inline-block"
           >
             aviral garg
           </Link>
@@ -111,8 +107,8 @@ export default function Navigation() {
                   <Link
                     href={item.path}
                     className={clsx(
-                      "block text-sm transition-colors",
-                      isActive ? "text-foreground" : "text-accent hover:text-foreground"
+                      "block text-sm transition-all duration-300 hover:translate-x-2",
+                      isActive ? "text-foreground font-medium" : "text-accent hover:text-foreground"
                     )}
                   >
                     {item.name}
@@ -124,18 +120,42 @@ export default function Navigation() {
         </nav>
 
         <div className="mt-auto">
-          <div className="flex flex-col gap-2 text-sm text-accent">
-            <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              github
+          <div className="flex gap-4 text-sm text-accent">
+            <a 
+              href={profile.socials.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              aria-label="GitHub"
+            >
+              <Github size={18} />
             </a>
-            <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              twitter
+            <a 
+              href={profile.socials.twitter} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              aria-label="Twitter"
+            >
+              <Twitter size={18} />
             </a>
-            <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              linkedin
+            <a 
+              href={profile.socials.linkedin} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={18} />
             </a>
-            <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              dev.to
+            <a 
+              href={profile.socials.devto} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-foreground transition-all duration-300 hover:scale-110"
+              aria-label="Dev.to"
+            >
+              <BookOpen size={18} />
             </a>
           </div>
           <div className="mt-4 text-xs text-accent">
