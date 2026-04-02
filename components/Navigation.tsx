@@ -27,7 +27,7 @@ export default function Navigation() {
       {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background z-50 flex items-center justify-between px-6">
         <Link href="/" className="text-lg font-medium hover:opacity-70 transition-opacity">
-          aviral garg
+          Aviral Garg
         </Link>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -92,10 +92,10 @@ export default function Navigation() {
             href="/" 
             className="text-lg font-medium hover:opacity-70 transition-all duration-300 hover:translate-x-1 inline-block"
           >
-            aviral garg
+            Aviral Garg
           </Link>
           <div className="mt-2 text-sm text-accent">
-            ai/ml developer & researcher
+            AI/ML Developer & Researcher
           </div>
         </div>
         
@@ -160,7 +160,7 @@ export default function Navigation() {
             </a>
           </div>
           <div className="mt-4 text-xs text-accent">
-            &copy; 2025 aviral garg
+            &copy; 2025 Aviral Garg
           </div>
         </div>
       </aside>

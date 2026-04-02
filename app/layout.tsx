@@ -9,8 +9,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "aviral garg - ai/ml developer & researcher",
-  description: "ai/ml developer, researcher, open-source contributor, and startup builder.",
+  title: "Aviral Garg - AI/ML Developer & Researcher",
+  description: "AI/ML developer, researcher, open-source contributor, and startup builder.",
 };
 
 export default function RootLayout({

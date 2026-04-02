@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Users, Clock, MapPin, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { StatusBadge } from "@/components/StatusBadge";
+import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ExperiencePage() {
   const current = experience.filter(exp => exp.type === "current");
@@ -13,22 +14,7 @@ export default function ExperiencePage() {
   const prior = experience.filter(exp => exp.type === "prior");
   const community = experience.filter(exp => exp.type === "community");
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -53,7 +39,8 @@ export default function ExperiencePage() {
             className="space-y-8"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
           >
             {current.map((exp, index) => (
               <motion.div 
@@ -118,7 +105,8 @@ export default function ExperiencePage() {
             className="space-y-6"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
           >
             {leadership.map((exp, index) => (
               <motion.div 
@@ -156,7 +144,8 @@ export default function ExperiencePage() {
             className="space-y-6"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
           >
             {research.map((exp, index) => (
               <motion.div 
@@ -194,7 +183,8 @@ export default function ExperiencePage() {
             className="space-y-6"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
           >
             {prior.map((exp, index) => (
               <motion.div 
@@ -232,7 +222,8 @@ export default function ExperiencePage() {
             className="space-y-6"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
           >
             {community.map((exp, index) => (
               <motion.div 

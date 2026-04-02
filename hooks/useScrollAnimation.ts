@@ -15,27 +15,53 @@ export function useScrollAnimation(offset: [string, string] = ["0 1", "1.33 1"])
   return { ref, opacity, y, scale };
 }
 
-// Staggered animation hook for lists
+// Enhanced staggered animation hook with better timing
 export function useStaggeredScrollAnimation() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.08,
+        delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0, 
+      y: 30
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
+      transition: { 
+        duration: 0.6
+      }
     }
   };
 
   return { containerVariants, itemVariants };
+}
+
+// Hook for stats/numbers with scale animation
+export function useStatsAnimation() {
+  const variants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.8,
+      y: 20
+    },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { 
+        duration: 0.8
+      }
+    }
+  };
+
+  return variants;
 }

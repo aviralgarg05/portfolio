@@ -4,24 +4,10 @@ import { profile } from "@/data/profile";
 import { motion } from "framer-motion";
 import { Mail, MapPin, ExternalLink, MessageCircle, Clock } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter, FaDev, FaCode, FaPython } from "react-icons/fa";
+import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ContactPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -32,7 +18,7 @@ export default function ContactPage() {
       >
         <h1 className="text-2xl md:text-3xl mb-4">contact</h1>
         <p className="text-sm text-accent leading-relaxed">
-          open to collaborations, consulting, and interesting problems in ai/ml systems.
+          Open to collaborations, consulting, and interesting problems in AI/ML systems.
         </p>
       </motion.section>
 
@@ -42,10 +28,11 @@ export default function ContactPage() {
           <MessageCircle className="w-5 h-5" /> get in touch
         </h2>
         <motion.div 
-          className="space-y-3 text-sm"
+          className="space-y-3 text-sm text-accent leading-relaxed"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.div 
             className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded"
@@ -82,7 +69,8 @@ export default function ContactPage() {
           className="space-y-3 text-sm"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.a
             href={profile.socials.github}
@@ -181,17 +169,18 @@ export default function ContactPage() {
       <section>
         <h2 className="text-lg md:text-xl mb-6">interested in</h2>
         <motion.div 
-          className="space-y-3 text-sm text-accent leading-relaxed"
+          className="space-y-3 text-sm"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
-          <motion.p variants={itemVariants}>• open source collaborations</motion.p>
-          <motion.p variants={itemVariants}>• ai/ml consulting projects</motion.p>
-          <motion.p variants={itemVariants}>• research collaborations</motion.p>
-          <motion.p variants={itemVariants}>• technical writing opportunities</motion.p>
-          <motion.p variants={itemVariants}>• speaking at conferences and meetups</motion.p>
-          <motion.p variants={itemVariants}>• building innovative products</motion.p>
+          <motion.p variants={itemVariants}>• Open source collaborations</motion.p>
+          <motion.p variants={itemVariants}>• AI/ML consulting projects</motion.p>
+          <motion.p variants={itemVariants}>• Research collaborations</motion.p>
+          <motion.p variants={itemVariants}>• Technical writing opportunities</motion.p>
+          <motion.p variants={itemVariants}>• Speaking at conferences and meetups</motion.p>
+          <motion.p variants={itemVariants}>• Building innovative products</motion.p>
         </motion.div>
       </section>
 

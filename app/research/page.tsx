@@ -5,33 +5,11 @@ import { motion } from "framer-motion";
 import { FileText, Clock, CheckCircle, Beaker, Lightbulb, BookOpen } from "lucide-react";
 import { StatusBadge } from "@/components/StatusBadge";
 import { TechTag } from "@/components/TechTag";
+import { useStaggeredScrollAnimation, useStatsAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ResearchPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
-
-  const statsVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.5 }
-    }
-  };
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
+  const statsVariants = useStatsAnimation();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -42,13 +20,14 @@ export default function ResearchPage() {
       >
         <h1 className="text-2xl md:text-3xl mb-4">research</h1>
         <p className="text-sm text-accent leading-relaxed mb-6">
-          active research pipeline in ai/ml systems, cybersecurity, and natural language processing.
+          Active research pipeline in AI/ML systems, cybersecurity, and natural language processing.
         </p>
         <motion.div 
           className="grid grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2, margin: "-50px" }}
         >
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
@@ -83,14 +62,15 @@ export default function ResearchPage() {
           className="space-y-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15, margin: "-30px" }}
         >
           {research.projects.map((project, index) => (
             <motion.div 
               key={index} 
               className="border-b border-border pb-8 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
               variants={itemVariants}
-              whileHover={{ x: 4 }}
+              whileHover={{ x: 4, transition: { duration: 0.2, ease: "easeOut" } }}
             >
               <div className="flex items-start justify-between mb-3">
                 <h3 className="text-lg">{project.title}</h3>
@@ -120,7 +100,8 @@ export default function ResearchPage() {
           className="space-y-2"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           {research.themes.map((theme, index) => (
             <motion.div 
@@ -143,7 +124,8 @@ export default function ResearchPage() {
           className="space-y-3 text-sm text-accent leading-relaxed"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.p variants={itemVariants}>• multi-agent systems and frameworks</motion.p>
           <motion.p variants={itemVariants}>• real-time ai systems with low latency</motion.p>

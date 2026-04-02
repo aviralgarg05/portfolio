@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Code2, Activity } from "lucide-react";
 import { FaGithub, FaPython } from "react-icons/fa";
 import { TechTag } from "@/components/TechTag";
+import { useStaggeredScrollAnimation, useStatsAnimation } from "@/hooks/useScrollAnimation";
 
 export default function OpenSourcePage() {
   const majorContributions = [
@@ -55,31 +56,8 @@ export default function OpenSourcePage() {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
-
-  const statsVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.5 }
-    }
-  };
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
+  const statsVariants = useStatsAnimation();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -96,7 +74,8 @@ export default function OpenSourcePage() {
           className="grid grid-cols-2 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
@@ -138,7 +117,8 @@ export default function OpenSourcePage() {
           className="space-y-6"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           {majorContributions.map((contribution) => (
             <motion.div 
@@ -175,7 +155,8 @@ export default function OpenSourcePage() {
           className="space-y-4"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           {openSource.pinnedRepos.map((repo) => (
             <motion.div 

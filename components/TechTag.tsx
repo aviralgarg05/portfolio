@@ -4,18 +4,18 @@ interface TechTagProps {
 }
 
 export function TechTag({ tech, index = 0 }: TechTagProps) {
-  // More subtle color combinations matching the screenshot style
+  // More vibrant color combinations - brighter and more saturated
   const colorVariations = [
-    'bg-amber-900/20 text-amber-300 border-amber-700/50 hover:bg-amber-900/30 hover:border-amber-600', // Python style
-    'bg-red-900/20 text-red-300 border-red-700/50 hover:bg-red-900/30 hover:border-red-600', // Multi-Agent Systems
-    'bg-blue-900/20 text-blue-300 border-blue-700/50 hover:bg-blue-900/30 hover:border-blue-600', // RAG style
-    'bg-orange-900/20 text-orange-300 border-orange-700/50 hover:bg-orange-900/30 hover:border-orange-600', // Benchmarking
-    'bg-purple-900/20 text-purple-300 border-purple-700/50 hover:bg-purple-900/30 hover:border-purple-600', // Jupyter
-    'bg-green-900/20 text-green-300 border-green-700/50 hover:bg-green-900/30 hover:border-green-600', // NLP
-    'bg-pink-900/20 text-pink-300 border-pink-700/50 hover:bg-pink-900/30 hover:border-pink-600', // ML
-    'bg-indigo-900/20 text-indigo-300 border-indigo-700/50 hover:bg-indigo-900/30 hover:border-indigo-600',
-    'bg-cyan-900/20 text-cyan-300 border-cyan-700/50 hover:bg-cyan-900/30 hover:border-cyan-600',
-    'bg-yellow-900/20 text-yellow-300 border-yellow-700/50 hover:bg-yellow-900/30 hover:border-yellow-600',
+    'bg-amber-800/30 text-amber-200 border-amber-500/60 hover:bg-amber-800/50 hover:border-amber-400', // Python style - brighter
+    'bg-red-800/30 text-red-200 border-red-500/60 hover:bg-red-800/50 hover:border-red-400', // Multi-Agent Systems - brighter
+    'bg-blue-800/30 text-blue-200 border-blue-500/60 hover:bg-blue-800/50 hover:border-blue-400', // RAG style - brighter
+    'bg-orange-800/30 text-orange-200 border-orange-500/60 hover:bg-orange-800/50 hover:border-orange-400', // Benchmarking - brighter
+    'bg-purple-800/30 text-purple-200 border-purple-500/60 hover:bg-purple-800/50 hover:border-purple-400', // Jupyter - brighter
+    'bg-green-800/30 text-green-200 border-green-500/60 hover:bg-green-800/50 hover:border-green-400', // NLP - brighter
+    'bg-pink-800/30 text-pink-200 border-pink-500/60 hover:bg-pink-800/50 hover:border-pink-400', // ML - brighter
+    'bg-indigo-800/30 text-indigo-200 border-indigo-500/60 hover:bg-indigo-800/50 hover:border-indigo-400', // brighter
+    'bg-cyan-800/30 text-cyan-200 border-cyan-500/60 hover:bg-cyan-800/50 hover:border-cyan-400', // brighter
+    'bg-yellow-800/30 text-yellow-200 border-yellow-500/60 hover:bg-yellow-800/50 hover:border-yellow-400', // brighter
   ];
 
   // Use tech name and index to determine color consistently

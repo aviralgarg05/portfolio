@@ -3,6 +3,7 @@
 import { writing } from "@/data/profile";
 import { motion } from "framer-motion";
 import { PenTool, Heart, ExternalLink, BookOpen, Tag } from "lucide-react";
+import { useStaggeredScrollAnimation, useStatsAnimation } from "@/hooks/useScrollAnimation";
 
 export default function WritingPage() {
   const groupedWriting = writing.reduce((acc, article) => {
@@ -13,31 +14,8 @@ export default function WritingPage() {
     return acc;
   }, {} as Record<string, typeof writing>);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
-
-  const statsVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.5 }
-    }
-  };
+  const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
+  const statsVariants = useStatsAnimation();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -48,13 +26,14 @@ export default function WritingPage() {
       >
         <h1 className="text-2xl md:text-3xl mb-4">writing</h1>
         <p className="text-sm text-accent leading-relaxed mb-6">
-          technical articles on ai/ml, databases, devops, and software engineering. published on dev.to and geeksforgeeks.
+          Technical articles on AI/ML, databases, DevOps, and software engineering. Published on Dev.to and GeeksforGeeks.
         </p>
         <motion.div 
           className="grid grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
@@ -82,7 +61,8 @@ export default function WritingPage() {
           className="space-y-6"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           {writing.map((article, index) => (
             <motion.a
@@ -122,7 +102,8 @@ export default function WritingPage() {
           className="space-y-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           {Object.entries(groupedWriting).map(([category, articles]) => (
             <motion.div key={category} variants={itemVariants}>
