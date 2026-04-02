@@ -55,7 +55,7 @@ export default function ResearchPage() {
 
       {/* Research Projects */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <FileText className="w-5 h-5" /> projects
         </h2>
         <motion.div 
@@ -93,7 +93,7 @@ export default function ResearchPage() {
 
       {/* Research Themes */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <Lightbulb className="w-5 h-5" /> research themes
         </h2>
         <motion.div 
@@ -117,7 +117,7 @@ export default function ResearchPage() {
 
       {/* Current Focus */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <BookOpen className="w-5 h-5" /> areas of interest
         </h2>
         <motion.div 
@@ -138,7 +138,7 @@ export default function ResearchPage() {
 
       {/* Publications Note */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6">publication status</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">publication status</h2>
         <p className="text-sm text-accent leading-relaxed">
           i have {research.status.underReview} paper under review, {research.status.readyToPublish} papers ready to publish, 
           and {research.status.underDevelopment} research projects currently in development. updates will be posted as papers are published.

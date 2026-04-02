@@ -32,7 +32,7 @@ export default function ExperiencePage() {
       {/* Current Roles */}
       {current.length > 0 && (
         <section>
-          <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
             <Briefcase className="w-5 h-5" /> current
           </h2>
           <motion.div 
@@ -98,7 +98,7 @@ export default function ExperiencePage() {
       {/* Leadership */}
       {leadership.length > 0 && (
         <section>
-          <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
             <Users className="w-5 h-5" /> leadership
           </h2>
           <motion.div 
@@ -137,7 +137,7 @@ export default function ExperiencePage() {
       {/* Research */}
       {research.length > 0 && (
         <section>
-          <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
             <GraduationCap className="w-5 h-5" /> research
           </h2>
           <motion.div 
@@ -176,7 +176,7 @@ export default function ExperiencePage() {
       {/* Prior Experience */}
       {prior.length > 0 && (
         <section>
-          <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
             <Briefcase className="w-5 h-5" /> prior experience
           </h2>
           <motion.div 
@@ -215,7 +215,7 @@ export default function ExperiencePage() {
       {/* Community */}
       {community.length > 0 && (
         <section>
-          <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
             <Users className="w-5 h-5" /> community & affiliations
           </h2>
           <motion.div 

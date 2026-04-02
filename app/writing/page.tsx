@@ -54,7 +54,7 @@ export default function WritingPage() {
 
       {/* All Articles */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <BookOpen className="w-5 h-5" /> all articles
         </h2>
         <motion.div 
@@ -95,7 +95,7 @@ export default function WritingPage() {
 
       {/* By Category */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <Tag className="w-5 h-5" /> by category
         </h2>
         <motion.div 
@@ -128,7 +128,7 @@ export default function WritingPage() {
 
       {/* Platforms */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6">platforms</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">platforms</h2>
         <div className="space-y-2 text-sm">
           <a
             href="https://dev.to/aviralgarg05"

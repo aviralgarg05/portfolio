@@ -110,7 +110,7 @@ export default function OpenSourcePage() {
 
       {/* Major Contributions */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <Code2 className="w-5 h-5" /> major contributions
         </h2>
         <motion.div 
@@ -148,7 +148,7 @@ export default function OpenSourcePage() {
 
       {/* Personal Open Source */}
       <section>
-        <h2 className="text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <FaPython className="w-5 h-5" /> my open source projects
         </h2>
         <motion.div 
@@ -180,7 +180,7 @@ export default function OpenSourcePage() {
 
       {/* GitHub Stats */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <Activity className="w-5 h-5" /> contribution activity
         </h2>
         <div className="mb-8 border border-border p-2 md:p-4 overflow-x-auto">
@@ -214,7 +214,7 @@ export default function OpenSourcePage() {
 
       {/* Languages */}
       <section>
-        <h2 className="text-xl mb-6">languages</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">languages</h2>
         <div className="space-y-3">
           {Object.entries(profile.languages).map(([lang, percentage]) => (
             <div key={lang}>
@@ -235,7 +235,7 @@ export default function OpenSourcePage() {
 
       {/* Links */}
       <section>
-        <h2 className="text-xl mb-6">find me on</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">find me on</h2>
         <div className="space-y-2 text-sm">
           <a
             href={profile.socials.github}

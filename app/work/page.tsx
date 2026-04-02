@@ -35,7 +35,7 @@ export default function WorkPage() {
         ref={featuredRef}
         style={{ opacity: featuredOpacity, y: featuredY, scale: featuredScale }}
       >
-        <h2 className="text-lg md:text-xl mb-6">Featured Projects</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">Featured Projects</h2>
         <motion.div 
           className="space-y-6 md:space-y-8"
           variants={containerVariants}
@@ -148,7 +148,7 @@ export default function WorkPage() {
           ref={otherRef}
           style={{ opacity: otherOpacity, y: otherY, scale: otherScale }}
         >
-          <h2 className="text-lg md:text-xl mb-6">Other Projects</h2>
+          <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">Other Projects</h2>
           <motion.div 
             className="space-y-6"
             variants={containerVariants}
@@ -217,7 +217,7 @@ export default function WorkPage() {
         ref={achievementsRef}
         style={{ opacity, y, scale }}
       >
-        <h2 className="text-lg md:text-xl mb-6">Achievements</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">Achievements</h2>
         <motion.div 
           className="space-y-4"
           variants={containerVariants}

@@ -24,7 +24,7 @@ export default function ContactPage() {
 
       {/* Direct Contact */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <MessageCircle className="w-5 h-5" /> get in touch
         </h2>
         <motion.div 
@@ -64,7 +64,7 @@ export default function ContactPage() {
 
       {/* Social Links */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6">find me online</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">find me online</h2>
         <motion.div 
           className="space-y-3 text-sm"
           variants={containerVariants}
@@ -167,7 +167,7 @@ export default function ContactPage() {
 
       {/* What I'm Looking For */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6">interested in</h2>
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium">interested in</h2>
         <motion.div 
           className="space-y-3 text-sm"
           variants={containerVariants}
@@ -186,7 +186,7 @@ export default function ContactPage() {
 
       {/* Response Time */}
       <section>
-        <h2 className="text-lg md:text-xl mb-6 flex items-center gap-2">
+        <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <Clock className="w-5 h-5" /> note
         </h2>
         <p className="text-sm text-accent leading-relaxed">
