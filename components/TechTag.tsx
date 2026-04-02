@@ -4,18 +4,18 @@ interface TechTagProps {
 }
 
 export function TechTag({ tech, index = 0 }: TechTagProps) {
-  // More vibrant color combinations - brighter and more saturated
+  // Much brighter and more vibrant color combinations for dark theme
   const colorVariations = [
-    'bg-amber-800/30 text-amber-200 border-amber-500/60 hover:bg-amber-800/50 hover:border-amber-400', // Python style - brighter
-    'bg-red-800/30 text-red-200 border-red-500/60 hover:bg-red-800/50 hover:border-red-400', // Multi-Agent Systems - brighter
-    'bg-blue-800/30 text-blue-200 border-blue-500/60 hover:bg-blue-800/50 hover:border-blue-400', // RAG style - brighter
-    'bg-orange-800/30 text-orange-200 border-orange-500/60 hover:bg-orange-800/50 hover:border-orange-400', // Benchmarking - brighter
-    'bg-purple-800/30 text-purple-200 border-purple-500/60 hover:bg-purple-800/50 hover:border-purple-400', // Jupyter - brighter
-    'bg-green-800/30 text-green-200 border-green-500/60 hover:bg-green-800/50 hover:border-green-400', // NLP - brighter
-    'bg-pink-800/30 text-pink-200 border-pink-500/60 hover:bg-pink-800/50 hover:border-pink-400', // ML - brighter
-    'bg-indigo-800/30 text-indigo-200 border-indigo-500/60 hover:bg-indigo-800/50 hover:border-indigo-400', // brighter
-    'bg-cyan-800/30 text-cyan-200 border-cyan-500/60 hover:bg-cyan-800/50 hover:border-cyan-400', // brighter
-    'bg-yellow-800/30 text-yellow-200 border-yellow-500/60 hover:bg-yellow-800/50 hover:border-yellow-400', // brighter
+    'bg-amber-500/20 text-amber-300 border-amber-400/80 hover:bg-amber-500/30 hover:border-amber-300', // Python style - much brighter
+    'bg-red-500/20 text-red-300 border-red-400/80 hover:bg-red-500/30 hover:border-red-300', // Multi-Agent Systems - much brighter
+    'bg-blue-500/20 text-blue-300 border-blue-400/80 hover:bg-blue-500/30 hover:border-blue-300', // RAG style - much brighter
+    'bg-orange-500/20 text-orange-300 border-orange-400/80 hover:bg-orange-500/30 hover:border-orange-300', // Benchmarking - much brighter
+    'bg-purple-500/20 text-purple-300 border-purple-400/80 hover:bg-purple-500/30 hover:border-purple-300', // Jupyter - much brighter
+    'bg-green-500/20 text-green-300 border-green-400/80 hover:bg-green-500/30 hover:border-green-300', // NLP - much brighter
+    'bg-pink-500/20 text-pink-300 border-pink-400/80 hover:bg-pink-500/30 hover:border-pink-300', // ML - much brighter
+    'bg-indigo-500/20 text-indigo-300 border-indigo-400/80 hover:bg-indigo-500/30 hover:border-indigo-300', // much brighter
+    'bg-cyan-500/20 text-cyan-300 border-cyan-400/80 hover:bg-cyan-500/30 hover:border-cyan-300', // much brighter
+    'bg-yellow-500/20 text-yellow-300 border-yellow-400/80 hover:bg-yellow-500/30 hover:border-yellow-300', // much brighter
   ];
 
   // Use tech name and index to determine color consistently
