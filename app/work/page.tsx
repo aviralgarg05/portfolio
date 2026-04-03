@@ -9,7 +9,7 @@ import { TechTag } from "@/components/TechTag";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const cardSpring = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 220,
   damping: 22,
 };
