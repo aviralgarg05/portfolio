@@ -10,8 +10,9 @@ import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScro
 
 const cardSpring = {
   type: "spring" as const,
-  stiffness: 220,
-  damping: 22,
+  stiffness: 90,
+  damping: 20,
+  mass: 0.9,
 };
 
 function SectionHeading({ title, detail }: { title: string; detail: string }) {
@@ -22,8 +23,8 @@ function SectionHeading({ title, detail }: { title: string; detail: string }) {
       <h2 className="flex items-center gap-3 text-xl md:text-2xl text-foreground font-medium">
         <motion.span
           className="h-2.5 w-2.5 rounded-full bg-amber-500 dark:bg-amber-300"
-          animate={shouldReduceMotion ? undefined : { scale: [1, 1.18, 1], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+          animate={shouldReduceMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.72, 0.9, 0.72] }}
+          transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
         />
         {title}
       </h2>
@@ -56,12 +57,12 @@ export default function WorkPage() {
         transition={{ duration: 0.5 }}
       >
         <motion.div
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-muted/35 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-accent"
+          className="page-kicker mb-5"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05, duration: 0.45 }}
+          transition={{ delay: 0.05, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Sparkles className="h-3.5 w-3.5 text-amber-500 dark:text-amber-300" />
+          <Sparkles className="h-3.5 w-3.5 text-amber-500/80 dark:text-amber-300/80" />
           Selected work
         </motion.div>
         <h1 className="text-2xl md:text-3xl mb-4">Work</h1>
@@ -78,9 +79,9 @@ export default function WorkPage() {
             <motion.div
               key={item.label}
               variants={itemVariants}
-              whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.01 }}
+              whileHover={shouldReduceMotion ? undefined : { y: -1.5, scale: 1.005 }}
               transition={cardSpring}
-              className="rounded-full border border-border bg-background/70 px-4 py-2 backdrop-blur-sm"
+              className="site-stat rounded-full px-4 py-2"
             >
               <span className="mr-2 text-sm text-foreground">{item.value}</span>
               <span className="text-xs text-accent">{item.label}</span>
@@ -105,13 +106,13 @@ export default function WorkPage() {
           {featured.map((project) => (
             <motion.article
               key={project.name} 
-              className="group relative overflow-hidden rounded-2xl border border-border/80 bg-background/80 p-5 md:p-6 shadow-[0_14px_40px_-32px_rgba(15,23,42,0.35)] transition-colors duration-300 hover:border-foreground/15 dark:hover:border-white/15"
+              className="site-card group p-5 md:p-6"
               variants={itemVariants}
-              whileHover={shouldReduceMotion ? undefined : { x: 6, y: -4, scale: 1.005 }}
+              whileHover={shouldReduceMotion ? undefined : { x: 2, y: -2, scale: 1.002 }}
               transition={cardSpring}
             >
-              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-500/8 via-transparent to-cyan-500/8 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-amber-300/10 dark:to-cyan-300/10" />
-              <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-foreground/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-500/4 via-transparent to-cyan-500/3 opacity-0 transition-opacity duration-700 group-hover:opacity-100 dark:from-amber-300/5 dark:to-cyan-300/4" />
+              <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-foreground/16 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
               <div className="relative">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 gap-2">
                 <div>
@@ -140,32 +141,32 @@ export default function WorkPage() {
                 <div className="flex flex-wrap gap-4 text-xs text-accent mb-4">
                   {project.metrics.stars && (
                     <motion.span
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
-                      className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/70 px-2.5 py-1"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+                      className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1"
                     >
                       <Star className="w-3 h-3" /> {project.metrics.stars}
                     </motion.span>
                   )}
                   {project.metrics.forks && (
                     <motion.span
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
-                      className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/70 px-2.5 py-1"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+                      className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1"
                     >
                       <GitFork className="w-3 h-3" /> {project.metrics.forks}
                     </motion.span>
                   )}
                   {project.metrics.downloads && (
                     <motion.span
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
-                      className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/70 px-2.5 py-1"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+                      className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1"
                     >
                       <Download className="w-3 h-3" /> {project.metrics.downloads}
                     </motion.span>
                   )}
                   {project.metrics.version && (
                     <motion.span
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
-                      className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/70 px-2.5 py-1"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+                      className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1"
                     >
                       v{project.metrics.version}
                     </motion.span>
@@ -185,8 +186,8 @@ export default function WorkPage() {
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-foreground hover:border-foreground/20 hover:bg-muted/50"
-                    whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                    className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+                    whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                   >
                      <FaGithub className="w-3 h-3" /> github <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -197,8 +198,8 @@ export default function WorkPage() {
                     href={project.links.pypi}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-foreground hover:border-foreground/20 hover:bg-muted/50"
-                    whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                    className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+                    whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                   >
                      <FaPython className="w-3 h-3" /> pypi <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -209,8 +210,8 @@ export default function WorkPage() {
                     href={project.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-foreground hover:border-foreground/20 hover:bg-muted/50"
-                    whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                    className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+                    whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                   >
                     live <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -221,8 +222,8 @@ export default function WorkPage() {
                     href={project.links.article}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-foreground hover:border-foreground/20 hover:bg-muted/50"
-                    whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                    className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+                    whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
                     whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                   >
                     article <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -253,12 +254,12 @@ export default function WorkPage() {
             {other.map((project) => (
               <motion.article
                 key={project.name} 
-                className="group relative overflow-hidden rounded-2xl border border-border/80 bg-background/75 p-4 md:p-5"
+                className="site-row group p-4 md:p-5"
                 variants={itemVariants}
-                whileHover={shouldReduceMotion ? undefined : { x: 4, y: -3 }}
+                whileHover={shouldReduceMotion ? undefined : { x: 2, y: -1.5 }}
                 transition={cardSpring}
               >
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-amber-500/5 to-cyan-500/6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:via-amber-300/7 dark:to-cyan-300/8" />
+                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-amber-500/4 to-cyan-500/4 opacity-0 transition-opacity duration-700 group-hover:opacity-100 dark:via-amber-300/5 dark:to-cyan-300/5" />
                 <div className="relative">
                 <h3 className="text-sm md:text-base mb-2 text-foreground transition-transform duration-300 group-hover:translate-x-0.5">{project.name}</h3>
                 <p className="max-w-2xl text-xs md:text-sm text-accent leading-relaxed mb-3">
@@ -275,8 +276,8 @@ export default function WorkPage() {
                   <div className="flex gap-4 text-xs text-accent mb-3">
                     {project.metrics.stars && (
                       <motion.span
-                        whileHover={shouldReduceMotion ? undefined : { y: -1 }}
-                        className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/70 px-2.5 py-1"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+                      className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1"
                       >
                         <Star className="w-3 h-3" /> {project.metrics.stars}
                       </motion.span>
@@ -290,8 +291,8 @@ export default function WorkPage() {
                       href={project.links.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-foreground hover:border-foreground/20 hover:bg-muted/50"
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                      className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
                       whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                     >
                       <FaGithub className="w-3 h-3" /> github <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -302,8 +303,8 @@ export default function WorkPage() {
                       href={project.links.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/link inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-foreground hover:border-foreground/20 hover:bg-muted/50"
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                      className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+                      whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
                       whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                     >
                       live <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -334,9 +335,9 @@ export default function WorkPage() {
           {achievements.map((achievement, index) => (
             <motion.article
               key={index} 
-              className="group relative overflow-hidden rounded-2xl border border-border/80 bg-background/70 p-4"
+              className="site-row group p-4"
               variants={itemVariants}
-              whileHover={shouldReduceMotion ? undefined : { x: 4, y: -2 }}
+              whileHover={shouldReduceMotion ? undefined : { x: 2, y: -1 }}
               transition={cardSpring}
             >
               <div className="pointer-events-none absolute inset-y-4 left-4 w-px bg-gradient-to-b from-amber-500/40 via-foreground/15 to-transparent transition-all duration-300 group-hover:left-5 dark:from-amber-300/45" />

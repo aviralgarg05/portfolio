@@ -14,10 +14,14 @@ export default function ContactPage() {
       <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
+        <div className="page-kicker mb-5">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-500 dark:bg-amber-300" />
+          Contact
+        </div>
         <h1 className="text-2xl md:text-3xl mb-4">contact</h1>
-        <p className="text-sm text-accent leading-relaxed">
+        <p className="max-w-2xl text-sm text-accent leading-relaxed">
           Open to collaborations, consulting, and interesting problems in AI/ML systems.
         </p>
       </motion.section>
@@ -35,9 +39,8 @@ export default function ContactPage() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <motion.div 
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded"
+            className="site-row flex justify-between p-3 md:p-4"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <Mail className="w-4 h-4" /> email
@@ -50,9 +53,8 @@ export default function ContactPage() {
             </a>
           </motion.div>
           <motion.div 
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded"
+            className="site-row flex justify-between p-3 md:p-4"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <MapPin className="w-4 h-4" /> location
@@ -76,9 +78,8 @@ export default function ContactPage() {
             href={profile.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaGithub className="w-4 h-4" /> github
@@ -91,9 +92,8 @@ export default function ContactPage() {
             href={profile.socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaLinkedin className="w-4 h-4" /> linkedin
@@ -106,9 +106,8 @@ export default function ContactPage() {
             href={profile.socials.medium}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaMedium className="w-4 h-4" /> medium
@@ -121,9 +120,8 @@ export default function ContactPage() {
             href={profile.socials.twitter}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaTwitter className="w-4 h-4" /> twitter
@@ -136,9 +134,8 @@ export default function ContactPage() {
             href={profile.socials.devto}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaDev className="w-4 h-4" /> dev.to
@@ -151,9 +148,8 @@ export default function ContactPage() {
             href={profile.socials.geeksforgeeks}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaCode className="w-4 h-4" /> geeksforgeeks
@@ -166,9 +162,8 @@ export default function ContactPage() {
             href={profile.socials.pypi}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            className="site-row flex justify-between p-3 md:p-4 group"
             variants={itemVariants}
-            whileHover={{ x: 4 }}
           >
             <span className="text-accent flex items-center gap-2">
               <FaPython className="w-4 h-4" /> pypi

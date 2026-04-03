@@ -66,21 +66,25 @@ export default function OpenSourcePage() {
       <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
+        <div className="page-kicker mb-5">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-500 dark:bg-amber-300" />
+          Ecosystem
+        </div>
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl md:text-3xl">Open Source</h1>
           <button
             onClick={() => refetch()}
             disabled={loading}
-            className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded hover:bg-background/50 transition-colors disabled:opacity-50"
+            className="site-link-pill flex items-center gap-2 px-3 py-1.5 text-xs disabled:opacity-50"
             title="Refresh GitHub stats"
           >
             <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
             {loading ? 'loading...' : 'refresh'}
           </button>
         </div>
-        <p className="text-sm text-accent leading-relaxed mb-6">
+        <p className="max-w-2xl text-sm text-accent leading-relaxed mb-6">
           Active contributor across the GitHub ecosystem. Focused on infrastructure, databases, AI/ML tooling, and developer tools.
         </p>
         {error && (
@@ -95,28 +99,28 @@ export default function OpenSourcePage() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
+          <motion.div variants={statsVariants} className="site-stat px-4 py-4 md:px-5 md:py-5">
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <GitPullRequest className="w-6 h-6 text-foreground" />
               {liveStats?.totalPRs ?? openSource.contributions.stats.totalPRs}
             </div>
             <div className="text-xs text-accent">pull requests</div>
           </motion.div>
-          <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
+          <motion.div variants={statsVariants} className="site-stat px-4 py-4 md:px-5 md:py-5">
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <GitMerge className="w-6 h-6 text-foreground" />
               {liveStats?.mergedPRs ?? openSource.contributions.stats.mergedPRs}
             </div>
             <div className="text-xs text-accent">merged prs</div>
           </motion.div>
-          <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
+          <motion.div variants={statsVariants} className="site-stat px-4 py-4 md:px-5 md:py-5">
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <FileText className="w-6 h-6 text-foreground" />
               {liveStats?.issues ?? openSource.contributions.stats.issues}
             </div>
             <div className="text-xs text-accent">issues authored</div>
           </motion.div>
-          <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
+          <motion.div variants={statsVariants} className="site-stat px-4 py-4 md:px-5 md:py-5">
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <MessageSquare className="w-6 h-6 text-foreground" />
               {liveStats?.comments ?? openSource.contributions.stats.comments}
@@ -141,15 +145,14 @@ export default function OpenSourcePage() {
           {majorContributions.map((contribution) => (
             <motion.div 
               key={contribution.repo} 
-              className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+              className="site-row p-4 md:p-5"
               variants={itemVariants}
-              whileHover={{ x: 4 }}
             >
               <a
                 href={`https://github.com/${contribution.repo}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm md:text-base hover:opacity-70 transition-opacity inline-flex items-center gap-2 mb-2"
+                className="site-link-pill inline-flex items-center gap-2 mb-2 px-3 py-1.5 text-sm md:text-base"
               >
                 <FaGithub className="w-4 h-4" /> {contribution.repo} <ExternalLink className="w-3 h-3" />
               </a>
@@ -179,15 +182,14 @@ export default function OpenSourcePage() {
           {openSource.pinnedRepos.map((repo) => (
             <motion.div 
               key={repo} 
-              className="border-b border-border pb-4 last:border-0 hover:bg-background/50 transition-colors p-3 -mx-3 rounded"
+              className="site-row p-3 md:p-4"
               variants={itemVariants}
-              whileHover={{ x: 4 }}
             >
               <a
                 href={`https://github.com/aviralgarg05/${repo}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm hover:opacity-70 transition-opacity inline-flex items-center gap-2"
+                className="site-link-pill inline-flex items-center gap-2 px-3 py-1.5 text-sm"
               >
                 <FaGithub className="w-4 h-4" /> {repo} <ExternalLink className="w-3 h-3" />
               </a>

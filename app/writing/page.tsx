@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function WritingPage() {
   const { posts: livePosts, loading, error, refetch } = useBlogPosts();
-  const [showLiveData, setShowLiveData] = useState(true);
+  const [showLiveData] = useState(true);
   
   // Use live data if available, fallback to static data
   const articlesToShow = (showLiveData && livePosts.length > 0) ? livePosts : writing;
@@ -34,22 +34,24 @@ export default function WritingPage() {
       <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
+        <div className="page-kicker mb-5">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-500 dark:bg-amber-300" />
+          Notes
+        </div>
         <h1 className="text-2xl md:text-3xl mb-4 flex items-center gap-3">
           writing
           <motion.button
             onClick={refetch}
             disabled={loading}
-            className={`p-2 rounded-md border border-border hover:bg-background/50 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            whileHover={{ scale: loading ? 1 : 1.05 }}
-            whileTap={{ scale: loading ? 1 : 0.95 }}
+            className={`site-link-pill p-2 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             title="Refresh content from live sources"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
           </motion.button>
         </h1>
-        <p className="text-sm text-accent leading-relaxed mb-6">
+        <p className="max-w-2xl text-sm text-accent leading-relaxed mb-6">
           Technical articles on AI/ML, databases, DevOps, and software engineering. Published on Dev.to, Medium, and GeeksforGeeks.
           {livePosts.length > 0 && (
             <span className="block mt-2 text-xs text-green-400">
@@ -69,14 +71,14 @@ export default function WritingPage() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
+          <motion.div variants={statsVariants} className="site-stat px-4 py-4 md:px-5 md:py-5">
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <PenTool className="w-6 h-6 text-foreground" />
               {totalArticles}
             </div>
             <div className="text-xs text-accent">total articles</div>
           </motion.div>
-          <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
+          <motion.div variants={statsVariants} className="site-stat px-4 py-4 md:px-5 md:py-5">
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <Heart className="w-6 h-6 text-foreground" />
               {livePosts.length > 0 ? totalReactions : 33}
@@ -104,9 +106,8 @@ export default function WritingPage() {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded group"
+              className="site-row block p-4 md:p-5 group"
               variants={itemVariants}
-              whileHover={{ x: 4 }}
             >
               <h3 className="text-sm md:text-base mb-2 flex items-center gap-2">
                 {article.title} <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -149,7 +150,7 @@ export default function WritingPage() {
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-sm hover:opacity-70 transition-opacity flex items-center gap-2 group"
+                    className="site-link-pill inline-flex items-center gap-2 px-3 py-1.5 text-sm group"
                   >
                     {article.title} <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
@@ -168,7 +169,7 @@ export default function WritingPage() {
             href="https://dev.to/aviralgarg05"
             target="_blank"
             rel="noopener noreferrer"
-            className="block hover:opacity-70 transition-opacity flex items-center gap-2"
+            className="site-link-pill inline-flex items-center gap-2 px-3 py-1.5"
           >
             dev.to <ExternalLink className="w-3 h-3" />
           </a>
@@ -176,7 +177,7 @@ export default function WritingPage() {
             href="https://medium.com/@gargaviral99"
             target="_blank"
             rel="noopener noreferrer"
-            className="block hover:opacity-70 transition-opacity flex items-center gap-2"
+            className="site-link-pill inline-flex items-center gap-2 px-3 py-1.5"
           >
             medium <ExternalLink className="w-3 h-3" />
           </a>
@@ -184,7 +185,7 @@ export default function WritingPage() {
             href="https://www.geeksforgeeks.org/profile/gargaviwmuu"
             target="_blank"
             rel="noopener noreferrer"
-            className="block hover:opacity-70 transition-opacity flex items-center gap-2"
+            className="site-link-pill inline-flex items-center gap-2 px-3 py-1.5"
           >
             geeksforgeeks <ExternalLink className="w-3 h-3" />
           </a>

@@ -1,31 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Counter from "@/components/Counter";
 import { profile, projects, openSource, writing } from "@/data/profile";
 import { ArrowRight, Star, GitFork, Heart } from "lucide-react";
 import { TechTag } from "@/components/TechTag";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-};
 
 export default function Home() {
   const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
@@ -45,11 +26,15 @@ export default function Home() {
     >
       {/* About Section */}
       <motion.section id="about" variants={itemVariants}>
+        <div className="page-kicker mb-5">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-500 dark:bg-amber-300" />
+          Overview
+        </div>
         <h2 className="text-xl md:text-2xl mb-4">About Me</h2>
-        <p className="text-sm text-accent leading-relaxed mb-4">
+        <p className="max-w-2xl text-sm text-accent leading-relaxed mb-4">
           I build AI/ML systems, contribute to open source, and publish research.
         </p>
-        <p className="text-sm text-accent leading-relaxed mb-4">
+        <p className="max-w-2xl text-sm text-accent leading-relaxed mb-4">
           Currently co-founding Waysorted. Previously at DRDO. Active contributor to major OSS projects.
         </p>
         <div className="flex flex-wrap gap-2 mt-6">
@@ -60,11 +45,7 @@ export default function Home() {
               animate={{ 
                 opacity: 1, 
                 y: 0,
-                transition: { delay: 0.5 + index * 0.1 }
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.2 }
+                transition: { delay: 0.45 + index * 0.12, duration: 0.85, ease: [0.22, 1, 0.36, 1] }
               }}
             >
               <TechTag tech={tag} index={index} />
@@ -93,13 +74,8 @@ export default function Home() {
           ].map((stat) => (
             <motion.div 
               key={stat.label}
-              className="group"
+              className="site-stat group px-4 py-4 md:px-5 md:py-5"
               variants={itemVariants}
-              whileHover={{ 
-                scale: 1.02,
-                y: -2,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
-              }}
             >
               <div className="text-2xl md:text-3xl font-medium mb-1 group-hover:text-accent transition-colors">
                 <Counter end={stat.value} />
@@ -118,10 +94,13 @@ export default function Home() {
         variants={itemVariants}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl">Selected Work</h2>
-          <Link href="/work" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
+          <h2 className="flex items-center gap-3 text-xl md:text-2xl">
+            <span className="h-2 w-2 rounded-full bg-amber-500/70 dark:bg-amber-300/80" />
+            Selected Work
+          </h2>
+          <Link href="/work" className="site-link-pill px-3 py-1.5 text-xs text-accent hover:text-foreground flex items-center gap-1.5 group">
             View All
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" />
           </Link>
         </div>
         <motion.div 
@@ -131,17 +110,16 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project) => (
             <motion.div 
               key={project.name} 
-              className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+              className="site-row p-4 md:p-5"
               variants={itemVariants}
-              whileHover={{ x: 4 }}
             >
-              <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors">
+              <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors duration-500">
                 {project.name}
               </h3>
-              <p className="text-xs md:text-sm text-accent leading-relaxed mb-3">
+              <p className="max-w-2xl text-xs md:text-sm text-accent leading-relaxed mb-3">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
@@ -152,12 +130,12 @@ export default function Home() {
               {project.metrics && (
                 <div className="flex gap-4 text-xs text-accent">
                   {project.metrics.stars && (
-                    <span className="flex items-center gap-1">
+                    <span className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1">
                       <Star size={12} /> {project.metrics.stars}
                     </span>
                   )}
                   {project.metrics.forks && (
-                    <span className="flex items-center gap-1">
+                    <span className="site-link-pill inline-flex items-center gap-1 px-2.5 py-1">
                       <GitFork size={12} /> {project.metrics.forks}
                     </span>
                   )}
@@ -171,10 +149,13 @@ export default function Home() {
       {/* Open Source */}
       <motion.section id="open-source" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl">Open Source</h2>
-          <Link href="/open-source" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
+          <h2 className="flex items-center gap-3 text-xl md:text-2xl">
+            <span className="h-2 w-2 rounded-full bg-amber-500/70 dark:bg-amber-300/80" />
+            Open Source
+          </h2>
+          <Link href="/open-source" className="site-link-pill px-3 py-1.5 text-xs text-accent hover:text-foreground flex items-center gap-1.5 group">
             View All
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" />
           </Link>
         </div>
         
@@ -187,8 +168,7 @@ export default function Home() {
           ].map((stat) => (
             <motion.div 
               key={stat.label}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="site-stat px-4 py-4 md:px-5 md:py-5"
             >
               <div className="text-xl md:text-2xl font-medium mb-1">{stat.value}</div>
               <div className="text-xs text-accent">{stat.label}</div>
@@ -204,14 +184,13 @@ export default function Home() {
               href={`https://github.com/${repo}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-xs md:text-sm hover:text-foreground transition-all duration-300 group flex items-center gap-2"
+              className="site-link-pill block px-4 py-3 text-xs md:text-sm hover:text-foreground group flex items-center gap-2"
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ x: 5 }}
+              transition={{ delay: index * 0.08, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               {repo}
-              <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-0.5" />
             </motion.a>
           ))}
         </div>
@@ -220,10 +199,13 @@ export default function Home() {
       {/* Writing */}
       <motion.section id="writing" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl md:text-2xl">recent writing</h2>
-          <Link href="/writing" className="text-xs text-accent hover:text-foreground transition-all duration-300 flex items-center gap-1 group">
+          <h2 className="flex items-center gap-3 text-xl md:text-2xl">
+            <span className="h-2 w-2 rounded-full bg-amber-500/70 dark:bg-amber-300/80" />
+            recent writing
+          </h2>
+          <Link href="/writing" className="site-link-pill px-3 py-1.5 text-xs text-accent hover:text-foreground flex items-center gap-1.5 group">
             all articles
-            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" />
           </Link>
         </div>
         <div className="space-y-4">
@@ -233,13 +215,12 @@ export default function Home() {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border-b border-border pb-4 last:border-0 group"
+              className="site-row block p-4 md:p-5 group"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ x: 5 }}
+              transition={{ delay: index * 0.12, duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors">{article.title}</h3>
+              <h3 className="text-sm md:text-base mb-2 group-hover:text-accent transition-colors duration-500">{article.title}</h3>
               <div className="flex items-center gap-4 text-xs text-accent">
                 <span>{article.platform}</span>
                 <span>{article.category}</span>

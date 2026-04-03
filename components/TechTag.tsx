@@ -23,7 +23,7 @@ function getColorIndex(tech: string) {
 export function TechTag({ tech }: TechTagProps) {
   return (
     <span
-      className={`inline-flex items-center text-xs px-3 py-1.5 border rounded-full font-medium cursor-default will-change-transform transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.03] ${colorVariations[getColorIndex(tech)]}`}
+      className={`inline-flex items-center text-xs px-3 py-1.5 border rounded-full font-medium cursor-default will-change-transform transition-transform duration-500 hover:-translate-y-0.5 hover:scale-[1.02] ${colorVariations[getColorIndex(tech)]}`}
     >
       {tech}
     </span>

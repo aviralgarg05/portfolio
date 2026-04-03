@@ -21,10 +21,14 @@ export default function ExperiencePage() {
       <motion.section
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
+        <div className="page-kicker mb-5">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-500 dark:bg-amber-300" />
+          Journey
+        </div>
         <h1 className="text-2xl md:text-3xl mb-4">experience</h1>
-        <p className="text-sm text-accent leading-relaxed">
+        <p className="max-w-2xl text-sm text-accent leading-relaxed">
           building products, conducting research, and contributing to the tech community.
         </p>
       </motion.section>
@@ -45,9 +49,8 @@ export default function ExperiencePage() {
             {current.map((exp, index) => (
               <motion.div 
                 key={index} 
-                className="border-b border-border pb-8 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+                className="site-card p-4 md:p-5"
                 variants={itemVariants}
-                whileHover={{ x: 4 }}
               >
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg">{exp.title}</h3>
@@ -72,7 +75,7 @@ export default function ExperiencePage() {
                         href={exp.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
+                        className="site-link-pill inline-flex items-center gap-1 px-3 py-1.5 text-foreground hover:text-foreground"
                       >
                          <FaGithub className="w-3 h-3" /> github <ExternalLink className="w-3 h-3" />
                       </a>
@@ -82,7 +85,7 @@ export default function ExperiencePage() {
                         href={exp.links.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground hover:opacity-70 transition-opacity flex items-center gap-1"
+                        className="site-link-pill inline-flex items-center gap-1 px-3 py-1.5 text-foreground hover:text-foreground"
                       >
                         website <ExternalLink className="w-3 h-3" />
                       </a>
@@ -111,9 +114,8 @@ export default function ExperiencePage() {
             {leadership.map((exp, index) => (
               <motion.div 
                 key={index} 
-                className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+                className="site-row p-4 md:p-5"
                 variants={itemVariants}
-                whileHover={{ x: 4 }}
               >
                 <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
@@ -150,9 +152,8 @@ export default function ExperiencePage() {
             {research.map((exp, index) => (
               <motion.div 
                 key={index} 
-                className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+                className="site-row p-4 md:p-5"
                 variants={itemVariants}
-                whileHover={{ x: 4 }}
               >
                 <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
@@ -189,9 +190,8 @@ export default function ExperiencePage() {
             {prior.map((exp, index) => (
               <motion.div 
                 key={index} 
-                className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+                className="site-row p-4 md:p-5"
                 variants={itemVariants}
-                whileHover={{ x: 4 }}
               >
                 <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
@@ -228,9 +228,8 @@ export default function ExperiencePage() {
             {community.map((exp, index) => (
               <motion.div 
                 key={index} 
-                className="border-b border-border pb-6 last:border-0 hover:bg-background/50 transition-colors p-4 -mx-4 rounded"
+                className="site-row p-4 md:p-5"
                 variants={itemVariants}
-                whileHover={{ x: 4 }}
               >
                 <h3 className="text-sm md:text-base mb-1">{exp.title}</h3>
                 <div className="text-sm text-accent mb-1">{exp.company}</div>
