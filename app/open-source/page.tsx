@@ -2,10 +2,11 @@
 
 import { openSource, profile } from "@/data/profile";
 import { motion } from "framer-motion";
-import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Code2, Activity } from "lucide-react";
+import { GitPullRequest, GitMerge, MessageSquare, FileText, ExternalLink, Code2, Activity, RefreshCw } from "lucide-react";
 import { FaGithub, FaPython } from "react-icons/fa";
 import { TechTag } from "@/components/TechTag";
 import { useStaggeredScrollAnimation, useStatsAnimation } from "@/hooks/useScrollAnimation";
+import { useGitHubStats } from "@/hooks/useContent";
 
 export default function OpenSourcePage() {
   const majorContributions = [
@@ -58,6 +59,7 @@ export default function OpenSourcePage() {
 
   const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
   const statsVariants = useStatsAnimation();
+  const { stats: liveStats, loading, error, refetch } = useGitHubStats();
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -66,10 +68,26 @@ export default function OpenSourcePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-2xl md:text-3xl mb-4">Open Source</h1>
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl md:text-3xl">Open Source</h1>
+          <button
+            onClick={() => refetch()}
+            disabled={loading}
+            className="flex items-center gap-2 px-3 py-1 text-xs border border-border rounded hover:bg-background/50 transition-colors disabled:opacity-50"
+            title="Refresh GitHub stats"
+          >
+            <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
+            {loading ? 'loading...' : 'refresh'}
+          </button>
+        </div>
         <p className="text-sm text-accent leading-relaxed mb-6">
           Active contributor across the GitHub ecosystem. Focused on infrastructure, databases, AI/ML tooling, and developer tools.
         </p>
+        {error && (
+          <div className="mb-4 p-3 border border-red-500/20 bg-red-500/10 rounded text-xs text-red-400">
+            Failed to load live GitHub stats. Showing cached data.
+          </div>
+        )}
         <motion.div 
           className="grid grid-cols-2 gap-6 md:gap-8"
           variants={containerVariants}
@@ -80,28 +98,28 @@ export default function OpenSourcePage() {
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <GitPullRequest className="w-6 h-6 text-foreground" />
-              {openSource.contributions.stats.totalPRs}
+              {liveStats?.totalPRs ?? openSource.contributions.stats.totalPRs}
             </div>
             <div className="text-xs text-accent">pull requests</div>
           </motion.div>
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <GitMerge className="w-6 h-6 text-foreground" />
-              {openSource.contributions.stats.mergedPRs}
+              {liveStats?.mergedPRs ?? openSource.contributions.stats.mergedPRs}
             </div>
             <div className="text-xs text-accent">merged prs</div>
           </motion.div>
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <FileText className="w-6 h-6 text-foreground" />
-              {openSource.contributions.stats.issues}
+              {liveStats?.issues ?? openSource.contributions.stats.issues}
             </div>
             <div className="text-xs text-accent">issues authored</div>
           </motion.div>
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <MessageSquare className="w-6 h-6 text-foreground" />
-              {openSource.contributions.stats.comments}
+              {liveStats?.comments ?? openSource.contributions.stats.comments}
             </div>
             <div className="text-xs text-accent">issue comments</div>
           </motion.div>
@@ -195,7 +213,7 @@ export default function OpenSourcePage() {
         <div className="space-y-3 text-sm">
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">total repositories</span>
-            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.repos}</span>
+            <span className="text-foreground text-xs md:text-sm">{liveStats?.repositories ?? profile.metrics.github.repos}</span>
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">non-fork repos</span>
@@ -203,11 +221,11 @@ export default function OpenSourcePage() {
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">followers</span>
-            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.followers}</span>
+            <span className="text-foreground text-xs md:text-sm">{liveStats?.followers ?? profile.metrics.github.followers}</span>
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">prs authored</span>
-            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.prsAuthored}</span>
+            <span className="text-foreground text-xs md:text-sm">{liveStats?.totalPRs ?? profile.metrics.github.prsAuthored}</span>
           </div>
         </div>
       </section>

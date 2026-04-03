@@ -2,20 +2,32 @@
 
 import { writing } from "@/data/profile";
 import { motion } from "framer-motion";
-import { PenTool, Heart, ExternalLink, BookOpen, Tag } from "lucide-react";
+import { PenTool, Heart, ExternalLink, BookOpen, Tag, RefreshCw } from "lucide-react";
 import { useStaggeredScrollAnimation, useStatsAnimation } from "@/hooks/useScrollAnimation";
+import { useBlogPosts } from "@/hooks/useContent";
+import { useState } from "react";
 
 export default function WritingPage() {
-  const groupedWriting = writing.reduce((acc, article) => {
+  const { posts: livePosts, loading, error, refetch } = useBlogPosts();
+  const [showLiveData, setShowLiveData] = useState(true);
+  
+  // Use live data if available, fallback to static data
+  const articlesToShow = (showLiveData && livePosts.length > 0) ? livePosts : writing;
+  
+  const groupedWriting = articlesToShow.reduce((acc, article) => {
     if (!acc[article.category]) {
       acc[article.category] = [];
     }
     acc[article.category].push(article);
     return acc;
-  }, {} as Record<string, typeof writing>);
+  }, {} as Record<string, typeof articlesToShow>);
 
   const { containerVariants, itemVariants } = useStaggeredScrollAnimation();
   const statsVariants = useStatsAnimation();
+  
+  // Calculate total reactions from live data
+  const totalReactions = livePosts.reduce((sum, post) => sum + (post.reactions || 0), 0);
+  const totalArticles = articlesToShow.length;
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -24,9 +36,31 @@ export default function WritingPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-2xl md:text-3xl mb-4">writing</h1>
+        <h1 className="text-2xl md:text-3xl mb-4 flex items-center gap-3">
+          writing
+          <motion.button
+            onClick={refetch}
+            disabled={loading}
+            className={`p-2 rounded-md border border-border hover:bg-background/50 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            whileHover={{ scale: loading ? 1 : 1.05 }}
+            whileTap={{ scale: loading ? 1 : 0.95 }}
+            title="Refresh content from live sources"
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          </motion.button>
+        </h1>
         <p className="text-sm text-accent leading-relaxed mb-6">
-          Technical articles on AI/ML, databases, DevOps, and software engineering. Published on Dev.to and GeeksforGeeks.
+          Technical articles on AI/ML, databases, DevOps, and software engineering. Published on Dev.to, Medium, and GeeksforGeeks.
+          {livePosts.length > 0 && (
+            <span className="block mt-2 text-xs text-green-400">
+              ✓ Live data from {livePosts.filter(p => p.platform === 'Medium').length} Medium + {livePosts.filter(p => p.platform === 'Dev.to').length} Dev.to articles
+            </span>
+          )}
+          {error && (
+            <span className="block mt-2 text-xs text-red-400">
+              ⚠ Using cached data (Live fetch failed: {error})
+            </span>
+          )}
         </p>
         <motion.div 
           className="grid grid-cols-2 gap-8"
@@ -38,14 +72,14 @@ export default function WritingPage() {
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <PenTool className="w-6 h-6 text-foreground" />
-              10
+              {totalArticles}
             </div>
             <div className="text-xs text-accent">total articles</div>
           </motion.div>
           <motion.div variants={statsVariants} whileHover={{ scale: 1.05 }}>
             <div className="text-2xl md:text-3xl font-medium mb-1 flex items-center gap-2">
               <Heart className="w-6 h-6 text-foreground" />
-              33
+              {livePosts.length > 0 ? totalReactions : 33}
             </div>
             <div className="text-xs text-accent">reactions</div>
           </motion.div>
@@ -64,7 +98,7 @@ export default function WritingPage() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {writing.map((article, index) => (
+          {articlesToShow.map((article, index) => (
             <motion.a
               key={index}
               href={article.url}
@@ -137,6 +171,14 @@ export default function WritingPage() {
             className="block hover:opacity-70 transition-opacity flex items-center gap-2"
           >
             dev.to <ExternalLink className="w-3 h-3" />
+          </a>
+          <a
+            href="https://medium.com/@gargaviral99"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block hover:opacity-70 transition-opacity flex items-center gap-2"
+          >
+            medium <ExternalLink className="w-3 h-3" />
           </a>
           <a
             href="https://www.geeksforgeeks.org/profile/gargaviwmuu"

@@ -6,7 +6,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { profile } from "@/data/profile";
 import { BookOpen, Menu, X as Close } from "lucide-react";
-import { FaGithub, FaTwitter, FaLinkedin, FaDev } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaLinkedin, FaDev, FaMedium } from "react-icons/fa";
 
 const navItems = [
   { name: "about", path: "/" },
@@ -78,6 +78,9 @@ export default function Navigation() {
                 </a>
                 <a href={profile.socials.devto} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-200 hover:scale-105 transform">
                   <FaDev size={20} />
+                </a>
+                <a href={profile.socials.medium} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-all duration-200 hover:scale-105 transform">
+                  <FaMedium size={20} />
                 </a>
               </div>
             </div>
@@ -157,6 +160,15 @@ export default function Navigation() {
               aria-label="Dev.to"
             >
               <FaDev size={18} />
+            </a>
+            <a 
+              href={profile.socials.medium} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-foreground transition-all duration-200 hover:scale-105 transform"
+              aria-label="Medium"
+            >
+              <FaMedium size={18} />
             </a>
           </div>
           <div className="mt-4 text-xs text-accent">

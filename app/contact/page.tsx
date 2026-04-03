@@ -3,7 +3,7 @@
 import { profile } from "@/data/profile";
 import { motion } from "framer-motion";
 import { Mail, MapPin, ExternalLink, MessageCircle, Clock } from "lucide-react";
-import { FaGithub, FaLinkedin, FaTwitter, FaDev, FaCode, FaPython } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaDev, FaMedium, FaCode, FaPython } from "react-icons/fa";
 import { useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ContactPage() {
@@ -99,7 +99,22 @@ export default function ContactPage() {
               <FaLinkedin className="w-4 h-4" /> linkedin
             </span>
             <span className="text-foreground flex items-center gap-2">
-              aviral-garg99 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              @aviralgarg05 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </span>
+          </motion.a>
+          <motion.a
+            href={profile.socials.medium}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex justify-between pb-3 border-b border-border hover:bg-background/50 transition-colors p-3 -mx-3 rounded group"
+            variants={itemVariants}
+            whileHover={{ x: 4 }}
+          >
+            <span className="text-accent flex items-center gap-2">
+              <FaMedium className="w-4 h-4" /> medium
+            </span>
+            <span className="text-foreground flex items-center gap-2">
+              @gargaviral99 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
             </span>
           </motion.a>
           <motion.a

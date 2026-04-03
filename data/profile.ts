@@ -12,6 +12,7 @@ export const profile = {
     github: "https://github.com/aviralgarg05",
     linkedin: "https://www.linkedin.com/in/aviral-garg99",
     devto: "https://dev.to/aviralgarg05",
+    medium: "https://medium.com/@gargaviral99",
     twitter: "https://twitter.com/aviralgarg39805",
     geeksforgeeks: "https://www.geeksforgeeks.org/profile/gargaviwmuu",
     pypi: "https://pypi.org/user/Aviral_Garg/",
