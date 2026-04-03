@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
 import { profile } from "@/data/profile";
-import { BookOpen, Menu, X as Close } from "lucide-react";
+import { Menu, X as Close } from "lucide-react";
 import { FaGithub, FaTwitter, FaLinkedin, FaDev, FaMedium } from "react-icons/fa";
 
 const navItems = [
@@ -53,11 +53,17 @@ export default function Navigation() {
                     <Link
                       href={item.path}
                       className={clsx(
-                        "block text-base transition-colors",
+                        "group inline-flex items-center gap-2 text-base transition-colors",
                         isActive ? "text-foreground" : "text-accent hover:text-foreground"
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
+                      <span
+                        className={clsx(
+                          "h-1.5 w-1.5 rounded-full transition-all duration-200",
+                          isActive ? "scale-100 bg-amber-500 dark:bg-amber-300" : "scale-0 bg-foreground/40 group-hover:scale-100"
+                        )}
+                      />
                       {item.name}
                     </Link>
                   </li>
@@ -111,10 +117,16 @@ export default function Navigation() {
                   <Link
                     href={item.path}
                     className={clsx(
-                      "block text-sm transition-all duration-300 hover:translate-x-2",
+                      "group inline-flex items-center gap-2 text-sm transition-all duration-300 hover:translate-x-2",
                       isActive ? "text-foreground font-medium" : "text-accent hover:text-foreground"
                     )}
                   >
+                    <span
+                      className={clsx(
+                        "h-1.5 w-1.5 rounded-full transition-all duration-200",
+                        isActive ? "scale-100 bg-amber-500 dark:bg-amber-300" : "scale-0 bg-foreground/40 group-hover:scale-100"
+                      )}
+                    />
                     {item.name}
                   </Link>
                 </li>

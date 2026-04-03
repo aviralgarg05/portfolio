@@ -59,9 +59,30 @@
 }
 
 body {
-  background: var(--background);
+  background-image:
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.05), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.04), transparent 22%);
+  background-attachment: fixed;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-mono);
+}
+
+a,
+button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(245, 158, 11, 0.55);
+  outline-offset: 3px;
+  border-radius: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,4 +100,18 @@ html {
 ::selection {
   background-color: var(--foreground);
   color: var(--background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
