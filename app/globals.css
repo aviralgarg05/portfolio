@@ -7,9 +7,6 @@
   --muted: #f5f5f5;
   --border: #e0e0e0;
   --accent: #666666;
-  --panel-bg: transparent;
-  --panel-bg-strong: rgba(0, 0, 0, 0.02);
-  --panel-border-hover: rgba(24, 24, 27, 0.18);
   
   /* Status badge colors */
   --status-active: #22c55e;
@@ -46,9 +43,6 @@
     --muted: #1a1a1a;
     --border: #333333;
     --accent: #999999;
-    --panel-bg: transparent;
-    --panel-bg-strong: rgba(255, 255, 255, 0.03);
-    --panel-border-hover: rgba(255, 255, 255, 0.14);
     
     /* Status badge colors - darker theme */
     --status-active: #16a34a;
@@ -87,22 +81,16 @@ button:focus-visible {
 }
 
 .page-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  border-bottom: 1px solid var(--border);
+  display: inline-block;
   color: var(--accent);
-  padding: 0 0 0.35rem;
+  padding: 0;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .page-kicker > span:first-child {
-  width: 0.375rem;
-  height: 0.375rem;
-  border-radius: 0 !important;
-  background: currentColor !important;
+  display: none;
 }
 
 .site-card,
@@ -110,12 +98,11 @@ button:focus-visible {
 .site-stat,
 .site-link-pill {
   position: relative;
-  border: 1px solid var(--border);
-  background: var(--panel-bg);
+  border: 0;
+  background: transparent;
   transition:
     transform 680ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 680ms ease,
-    border-color 680ms ease,
+    color 320ms ease,
     opacity 320ms ease;
 }
 
@@ -123,8 +110,7 @@ button:focus-visible {
 .site-row:hover,
 .site-stat:hover,
 .site-link-pill:hover {
-  border-color: var(--panel-border-hover);
-  background: var(--panel-bg-strong);
+  background: transparent;
 }
 
 .site-card {
