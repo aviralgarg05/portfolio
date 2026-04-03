@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { projects, achievements } from "@/data/profile";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Star, GitFork, Download, ExternalLink, Award } from "lucide-react";
 import { FaGithub, FaPython } from "react-icons/fa";
 import { StatusBadge } from "@/components/StatusBadge";
