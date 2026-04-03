@@ -51,7 +51,7 @@ export default function WorkPage() {
               whileHover={{ x: 4 }}
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 gap-2">
-                <h3 className="text-base md:text-lg">{project.name}</h3>
+                <h3 className="text-base md:text-lg text-foreground">{project.name}</h3>
                 {project.status && (
                   <StatusBadge status={project.status} />
                 )}
@@ -163,7 +163,7 @@ export default function WorkPage() {
                 variants={itemVariants}
                 whileHover={{ x: 4 }}
               >
-                <h3 className="text-sm md:text-base mb-2">{project.name}</h3>
+                <h3 className="text-sm md:text-base mb-2 text-foreground">{project.name}</h3>
                 <p className="text-xs md:text-sm text-accent leading-relaxed mb-3">
                   {project.description}
                 </p>
@@ -233,7 +233,7 @@ export default function WorkPage() {
               whileHover={{ x: 4 }}
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2 gap-2">
-                <h3 className="text-sm md:text-base flex items-center gap-2">
+                <h3 className="text-sm md:text-base flex items-center gap-2 text-foreground">
                   <Award className="w-4 h-4 text-foreground" />
                   {achievement.title}
                 </h3>

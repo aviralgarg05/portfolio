@@ -1,5 +1,47 @@
 // Content fetching utilities for auto-updating blog posts and contributions
 
+// Helper function to categorize content based on title and tags
+function categorizeContent(title: string, description: string = '', tags: string[] = []): string {
+  const content = `${title} ${description}`.toLowerCase();
+  const allTags = tags.map(tag => tag.toLowerCase());
+  
+  // AI/ML keywords
+  if (content.includes('ai') || content.includes('artificial intelligence') || 
+      content.includes('machine learning') || content.includes('ml') || 
+      content.includes('neural network') || content.includes('deep learning') ||
+      content.includes('nlp') || content.includes('computer vision') ||
+      allTags.some(tag => ['ai', 'ml', 'machinelearning', 'artificialintelligence'].includes(tag))) {
+    return 'AI/ML';
+  }
+  
+  // DevOps keywords
+  if (content.includes('devops') || content.includes('kubernetes') || content.includes('k8s') ||
+      content.includes('docker') || content.includes('ci/cd') || content.includes('terraform') ||
+      content.includes('jenkins') || content.includes('deployment') || content.includes('infrastructure') ||
+      allTags.some(tag => ['devops', 'kubernetes', 'docker', 'cicd'].includes(tag))) {
+    return 'DevOps';
+  }
+  
+  // Database keywords
+  if (content.includes('database') || content.includes('sql') || content.includes('nosql') ||
+      content.includes('mongodb') || content.includes('postgresql') || content.includes('mysql') ||
+      content.includes('redis') || content.includes('elasticsearch') ||
+      allTags.some(tag => ['database', 'sql', 'nosql', 'mongodb'].includes(tag))) {
+    return 'Database';
+  }
+  
+  // Programming/Development keywords
+  if (content.includes('programming') || content.includes('development') || content.includes('coding') ||
+      content.includes('javascript') || content.includes('python') || content.includes('react') ||
+      content.includes('nodejs') || content.includes('typescript') ||
+      allTags.some(tag => ['programming', 'javascript', 'python', 'react'].includes(tag))) {
+    return 'Development';
+  }
+  
+  // Default category
+  return 'Tech';
+}
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -46,7 +88,7 @@ export async function fetchMediumPosts(username: string): Promise<BlogPost[]> {
       title: item.title,
       url: item.link,
       platform: 'Medium',
-      category: 'AI/ML', // You can enhance this to parse categories from content
+      category: categorizeContent(item.title, item.description, item.categories),
       publishedAt: item.pubDate,
       description: item.description?.replace(/<[^>]*>/g, '').substring(0, 200) + '...',
       tags: item.categories || []
@@ -68,7 +110,7 @@ export async function fetchDevToPosts(username: string): Promise<BlogPost[]> {
       title: post.title,
       url: post.url,
       platform: 'Dev.to',
-      category: post.tag_list?.[0] || 'General',
+      category: categorizeContent(post.title, post.description, post.tag_list),
       publishedAt: post.published_at,
       reactions: post.public_reactions_count,
       description: post.description,
