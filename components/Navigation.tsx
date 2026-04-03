@@ -25,7 +25,7 @@ export default function Navigation() {
   return (
     <>
       {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background/88 backdrop-blur-md z-50 flex items-center justify-between px-6">
+      <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background z-50 flex items-center justify-between px-6">
         <Link href="/" className="text-lg font-medium hover:opacity-80 transition-opacity duration-500">
           Aviral Garg
         </Link>
@@ -41,7 +41,7 @@ export default function Navigation() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-background/92 backdrop-blur-md z-40 pt-16 animate-in fade-in duration-300"
+          className="md:hidden fixed inset-0 bg-background z-40 pt-16 animate-in fade-in duration-300"
           onClick={() => setMobileMenuOpen(false)}
         >
           <nav className="p-6">
@@ -60,8 +60,8 @@ export default function Navigation() {
                     >
                       <span
                         className={clsx(
-                          "h-1.5 w-1.5 rounded-full transition-all duration-200",
-                          isActive ? "scale-100 bg-amber-500 dark:bg-amber-300" : "scale-0 bg-foreground/40 group-hover:scale-100"
+                          "h-1.5 w-1.5 transition-all duration-200",
+                          isActive ? "scale-100 bg-foreground" : "scale-0 bg-foreground/40 group-hover:scale-100"
                         )}
                       />
                       {item.name}
@@ -95,7 +95,7 @@ export default function Navigation() {
       )}
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-64 border-r border-border bg-background/90 backdrop-blur-xl p-8 flex-col">
+      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-64 border-r border-border bg-background p-8 flex-col">
         <div className="mb-12">
           <Link 
             href="/" 
@@ -123,8 +123,8 @@ export default function Navigation() {
                   >
                     <span
                       className={clsx(
-                        "h-1.5 w-1.5 rounded-full transition-all duration-200",
-                        isActive ? "scale-100 bg-amber-500 dark:bg-amber-300" : "scale-0 bg-foreground/40 group-hover:scale-100"
+                        "h-1.5 w-1.5 transition-all duration-200",
+                        isActive ? "scale-100 bg-foreground" : "scale-0 bg-foreground/40 group-hover:scale-100"
                       )}
                     />
                     {item.name}

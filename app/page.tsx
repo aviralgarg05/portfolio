@@ -94,10 +94,7 @@ export default function Home() {
         variants={itemVariants}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="flex items-center gap-3 text-xl md:text-2xl">
-            <span className="h-2 w-2 rounded-full bg-amber-500/70 dark:bg-amber-300/80" />
-            Selected Work
-          </h2>
+          <h2 className="text-xl md:text-2xl">Selected Work</h2>
           <Link href="/work" className="site-link-pill px-3 py-1.5 text-xs text-accent hover:text-foreground flex items-center gap-1.5 group">
             View All
             <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" />
@@ -149,10 +146,7 @@ export default function Home() {
       {/* Open Source */}
       <motion.section id="open-source" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="flex items-center gap-3 text-xl md:text-2xl">
-            <span className="h-2 w-2 rounded-full bg-amber-500/70 dark:bg-amber-300/80" />
-            Open Source
-          </h2>
+          <h2 className="text-xl md:text-2xl">Open Source</h2>
           <Link href="/open-source" className="site-link-pill px-3 py-1.5 text-xs text-accent hover:text-foreground flex items-center gap-1.5 group">
             View All
             <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" />
@@ -199,10 +193,7 @@ export default function Home() {
       {/* Writing */}
       <motion.section id="writing" variants={itemVariants}>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="flex items-center gap-3 text-xl md:text-2xl">
-            <span className="h-2 w-2 rounded-full bg-amber-500/70 dark:bg-amber-300/80" />
-            recent writing
-          </h2>
+          <h2 className="text-xl md:text-2xl">recent writing</h2>
           <Link href="/writing" className="site-link-pill px-3 py-1.5 text-xs text-accent hover:text-foreground flex items-center gap-1.5 group">
             all articles
             <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-0.5" />

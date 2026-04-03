@@ -17,8 +17,8 @@ export function StatusBadge({ status }: StatusBadgeProps) {
   };
 
   return (
-    <span className={`inline-flex items-center gap-2 text-xs px-3 py-1.5 border rounded-full font-medium transition-all duration-500 hover:-translate-y-0.5 hover:scale-[1.02] cursor-default ${getStatusStyles(status)}`}>
-      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-80" />
+    <span className={`inline-flex items-center gap-2 text-xs px-3 py-1.5 border rounded-none font-medium transition-all duration-500 hover:-translate-y-0.5 hover:scale-[1.02] cursor-default ${getStatusStyles(status)}`}>
+      <span className="h-1.5 w-1.5 bg-current opacity-80" />
       {status}
     </span>
   );
