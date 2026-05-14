@@ -136,9 +136,9 @@ export const experience = [
   {
     title: "Sr. AI/ML Developer",
     company: "Heimatverse",
-    period: "Aug 2024 - Present",
+    period: "Aug 2024 - May 2025",
     location: "Remote",
-    type: "current",
+    type: "prior",
     description: "Developing AI/ML systems for home automation and client-facing product work.",
     verified: "cv",
   },
