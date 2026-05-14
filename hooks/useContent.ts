@@ -65,12 +65,50 @@ export function useBlogPosts() {
 
 // Hook specifically for GitHub stats
 export function useGitHubStats() {
-  const { data, loading, error, refetch } = useContent();
-  
+  const [stats, setStats] = useState<GitHubStats | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchStats = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch('/api/github', {
+        cache: 'no-store',
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        setStats(result.stats);
+      } else {
+        setError(result.error || 'Failed to fetch GitHub stats');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStats();
+
+    const intervalId = window.setInterval(fetchStats, 300000);
+    const handleFocus = () => fetchStats();
+
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, []);
+
   return {
-    stats: data?.githubStats,
+    stats,
     loading,
     error,
-    refetch
+    refetch: fetchStats
   };
 }

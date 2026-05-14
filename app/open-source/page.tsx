@@ -7,6 +7,7 @@ import { FaGithub, FaPython } from "react-icons/fa";
 import { TechTag } from "@/components/TechTag";
 import { useStaggeredScrollAnimation, useStatsAnimation } from "@/hooks/useScrollAnimation";
 import { useGitHubStats } from "@/hooks/useContent";
+import { ContributionHeatmap } from "@/components/ContributionHeatmap";
 
 export default function OpenSourcePage() {
   const majorContributions = [
@@ -125,7 +126,7 @@ export default function OpenSourcePage() {
               <MessageSquare className="w-6 h-6 text-foreground" />
               {liveStats?.comments ?? openSource.contributions.stats.comments}
             </div>
-            <div className="text-xs text-accent">issue comments</div>
+            <div className="text-xs text-accent">commented threads</div>
           </motion.div>
         </motion.div>
       </motion.section>
@@ -203,11 +204,10 @@ export default function OpenSourcePage() {
         <h2 className="text-xl md:text-2xl mb-6 text-foreground font-medium flex items-center gap-2">
           <Activity className="w-5 h-5" /> contribution activity
         </h2>
-        <div className="mb-8 border border-border p-2 md:p-4 overflow-x-auto">
-          <img 
-            src="https://ghchart.rshah.org/000000/aviralgarg05" 
-            alt="GitHub Contribution Graph"
-            className="w-full min-w-[600px] dark:invert"
+        <div className="mb-8">
+          <ContributionHeatmap
+            contributions={liveStats?.contributions ?? []}
+            totalContributions={liveStats?.totalContributions}
           />
         </div>
         
@@ -219,7 +219,9 @@ export default function OpenSourcePage() {
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">non-fork repos</span>
-            <span className="text-foreground text-xs md:text-sm">{profile.metrics.github.nonForkRepos}</span>
+            <span className="text-foreground text-xs md:text-sm">
+              {liveStats?.nonForkRepositories ?? profile.metrics.github.nonForkRepos}
+            </span>
           </div>
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">followers</span>
@@ -228,6 +230,14 @@ export default function OpenSourcePage() {
           <div className="flex justify-between pb-2 border-b border-border">
             <span className="text-accent text-xs md:text-sm">prs authored</span>
             <span className="text-foreground text-xs md:text-sm">{liveStats?.totalPRs ?? profile.metrics.github.prsAuthored}</span>
+          </div>
+          <div className="flex justify-between pb-2 border-b border-border">
+            <span className="text-accent text-xs md:text-sm">last sync</span>
+            <span className="text-foreground text-xs md:text-sm">
+              {liveStats?.lastUpdated
+                ? new Date(liveStats.lastUpdated).toLocaleString()
+                : "cached fallback"}
+            </span>
           </div>
         </div>
       </section>

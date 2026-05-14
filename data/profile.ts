@@ -3,7 +3,7 @@ export const profile = {
     name: "Aviral Garg",
     location: "New Delhi, India",
     tagline: "AI/ML Developer, Researcher, and Startup Builder",
-    bio: "Co-Founder @Waysorted | Former DRDO Intern | AI/ML Developer and Researcher",
+    bio: "GSoC '26 @Apache | Co-Founder @Waysorted | Former DRDO Research Intern",
     email: "gargaviral99@gmail.com",
     phone: "+91-9971195728",
   },
@@ -20,13 +20,13 @@ export const profile = {
   
   metrics: {
     github: {
-      repos: 191,
-      nonForkRepos: 96,
-      followers: 49,
-      prsAuthored: 169,
-      prsMerged: 91,
-      issuesAuthored: 154,
-      issuesCommented: 417,
+      repos: 204,
+      nonForkRepos: 97,
+      followers: 57,
+      prsAuthored: 197,
+      prsMerged: 108,
+      issuesAuthored: 157,
+      issuesCommented: 613,
     },
     writing: {
       devtoArticles: 10,
@@ -81,7 +81,7 @@ export const experience = [
     period: "May 2025 - Present",
     location: "New Delhi, India",
     type: "current",
-    description: "Building unified tools hub for makers. Leading technical strategy and product development.",
+    description: "Building Waysorted, a unified tools hub for makers, and leading technical strategy, product development, and platform execution.",
     verified: "public",
     links: {
       github: "https://github.com/Waysorted-s-Organisation",
@@ -89,12 +89,21 @@ export const experience = [
     }
   },
   {
+    title: "Google Summer of Code Contributor",
+    company: "Apache Software Foundation",
+    period: "May 2026 - Present",
+    location: "Remote",
+    type: "current",
+    description: "Contributing to Apache open-source systems as part of Google Summer of Code 2026.",
+    verified: "cv",
+  },
+  {
     title: "AI & ML Intern",
     company: "Toastd AI",
     period: "Nov 2025 - Mar 2026",
     location: "Remote",
     type: "prior",
-    description: "Working on AI/ML systems and model development.",
+    description: "Built search systems using RAG for AI product workflows.",
     verified: "cv",
   },
   {
@@ -112,7 +121,7 @@ export const experience = [
     period: "May 2025 - Nov 2025",
     location: "Remote",
     type: "prior",
-    description: "Led machine learning engineering initiatives for early-stage startup.",
+    description: "Built AI-powered solutions for entrepreneur-facing product workflows at an early-stage startup.",
     verified: "cv",
   },
   {
@@ -121,16 +130,16 @@ export const experience = [
     period: "June 2025 - Oct 2025",
     location: "Remote",
     type: "prior",
-    description: "Developed AI/ML solutions for healthcare and logistics applications.",
+    description: "Built a RAG-based chatbot for toll systems deployed across India.",
     verified: "cv",
   },
   {
     title: "Sr. AI/ML Developer",
     company: "Heimatverse",
-    period: "Aug 2024 - May 2025",
+    period: "Aug 2024 - Present",
     location: "Remote",
-    type: "prior",
-    description: "Senior role developing AI/ML systems for metaverse applications.",
+    type: "current",
+    description: "Developing AI/ML systems for home automation and client-facing product work.",
     verified: "cv",
   },
   {
@@ -139,7 +148,7 @@ export const experience = [
     period: "June 2024 - Oct 2024",
     location: "New Delhi, India",
     type: "research",
-    description: "Developed intrusion detection system using machine learning for ARP-MiTM and SSDP Flood prediction. Worked on cybersecurity research projects.",
+    description: "Conducted research on intrusion detection systems, including machine learning models for ARP-MiTM and SSDP flood prediction.",
     verified: "public",
   },
   {
@@ -148,7 +157,7 @@ export const experience = [
     period: "May 2024 - Aug 2024",
     location: "Remote",
     type: "prior",
-    description: "Contributed to developer community platform and tools.",
+    description: "Contributed to machine learning and developer tooling initiatives at a London-based company.",
     verified: "public",
   },
   {
@@ -383,10 +392,10 @@ export const openSource = {
       "dragonflyoss/dragonfly",
     ],
     stats: {
-      totalPRs: 169,
-      mergedPRs: 91,
-      issues: 154,
-      comments: 417,
+      totalPRs: 197,
+      mergedPRs: 108,
+      issues: 157,
+      comments: 613,
     }
   },
   
@@ -417,4 +426,4 @@ export const achievements = [
   },
 ];
 
-export const narrative = `Aviral Garg is a New Delhi-based AI/ML developer, researcher, open-source contributor, and startup builder. He contributes actively across GitHub OSS ecosystems, publishes technical writing on Dev.to and GeeksforGeeks, and has shipped projects such as AgentUnit, NexumDB, Codebot, MindMate, and SocialSellers. He studies Computer Science at GGSIPU and, based on his CV and public footprint, has worked across DRDO, Quine, Heimatverse, Leadshike Labs, IHMCL, and Toastd AI. His CV also documents an active research pipeline with one paper under review, two ready to publish, and two under development.`;
+export const narrative = `Aviral Garg is a New Delhi-based AI/ML developer, researcher, open-source contributor, and startup builder. He contributes actively across GitHub OSS ecosystems, publishes technical writing on Dev.to and GeeksforGeeks, and has shipped projects such as AgentUnit, NexumDB, Codebot, MindMate, and SocialSellers. He studies Computer Science at GGSIPU and, based on his CV and public footprint, is currently co-founding Waysorted, contributing through Google Summer of Code 2026 with Apache, and working across product and research roles including Heimatverse, DRDO, Quine, Leadshike Labs, IHMCL, and Toastd AI. His CV also documents an active research pipeline with one paper under review, two ready to publish, and two under development.`;

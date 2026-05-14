@@ -35,7 +35,7 @@ export default function Home() {
           I build AI/ML systems, contribute to open source, and publish research.
         </p>
         <p className="max-w-2xl text-sm text-accent leading-relaxed mb-4">
-          Currently co-founding Waysorted. Previously at DRDO. Active contributor to major OSS projects.
+          Currently co-founding Waysorted, contributing through Google Summer of Code 2026 with Apache, and building AI/ML systems for products and research.
         </p>
         <div className="flex flex-wrap gap-2 mt-6">
           {["LLMs", "NLP", "Machine Learning", "Research"].map((tag, index) => (

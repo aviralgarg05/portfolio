@@ -1,14 +1,24 @@
 import { NextResponse } from 'next/server';
 import { fetchAllContent } from '@/lib/content-fetcher';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const content = await fetchAllContent();
     
-    return NextResponse.json({
-      success: true,
-      data: content
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        data: content
+      },
+      {
+        headers: {
+          'Cache-Control': 'no-store, max-age=0',
+        },
+      }
+    );
   } catch (error) {
     console.error('Error in content API:', error);
     
