@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
+import {
+  ContributionExplorer,
+  DeliverablesExplorer,
+  ProjectFlow,
+  ValidationExplorer,
+} from "./InteractiveWorkProduct";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -37,84 +43,6 @@ const stats = [
   ["10,783", "GitHub additions"],
 ];
 
-const deliverables = [
-  {
-    number: "01",
-    title: "A complete package lifecycle",
-    status: "Merged",
-    tone: "merged",
-    body: "nxpkg grew from a local installer into a recoverable lifecycle: sync, install, update, rollback, remove, and list. It supports local and network catalogs, validates metadata and paths, verifies SHA-256 digests, uses configurable versioned storage, and handles locks and interrupted state changes.",
-    links: [
-      ["Initial implementation", "https://github.com/apache/nuttx-apps/pull/3474"],
-      ["Hardening series", "https://github.com/apache/nuttx-apps/pull/3642"],
-      ["Final lifecycle", "https://github.com/apache/nuttx-apps/pull/3720"],
-    ],
-  },
-  {
-    number: "02",
-    title: "An application store that runs on the device",
-    status: "Tested · Open",
-    tone: "open",
-    body: "NXStore reads nxpkg state through its public API, keeps slow work away from the LVGL event thread, and launches installed ELF applications under a supervisor. The same path was exercised with a diagnostic, calculator, games, exported metadata and icons, and NXDoom on an ESP32-S3 touchscreen target.",
-    links: [
-      ["NXStore", "https://github.com/apache/nuttx-apps/pull/3643"],
-      ["Application set", "https://github.com/apache/nuttx-apps/pull/3660"],
-      ["NXDoom", "https://github.com/apache/nuttx-apps/pull/3644"],
-    ],
-  },
-  {
-    number: "03",
-    title: "Declarative shared-library packaging",
-    status: "Tested · Open",
-    tone: "open",
-    body: "Library.mk adds a small Android.mk-style declaration for building loadable libraries from C or C++ sources. I validated function and shared-data resolution, dependencies between modules, mixed-language inputs, and clean unloads on the tested Xtensa configuration. This is shared-library packaging; it is not an FDPIC claim.",
-    links: [
-      ["Library.mk", "https://github.com/apache/nuttx-apps/pull/3730"],
-      ["Documentation", "https://github.com/apache/nuttx/pull/19888"],
-    ],
-  },
-];
-
-const validation = [
-  ["Valid and invalid ELF fixtures", "Pass", "Hardware"],
-  ["Bad digest and staging cleanup", "Pass", "Hardware"],
-  ["Update, rollback, remove", "Pass", "Hardware"],
-  ["Live and stale package locks", "Pass", "Hardware"],
-  ["NXStore launch and close loop", "Pass", "Hardware"],
-  ["NXDoom RGB565 output", "Pass", "Simulator + hardware"],
-  ["Shared-library load and unload", "Pass", "Hardware"],
-  ["Fresh network re-test", "Environment-limited", "Active image lacked Wi-Fi/loopback"],
-];
-
-type Contribution = {
-  repo: "nuttx-apps" | "nuttx";
-  number: number;
-  state: "Merged" | "Open" | "Open draft";
-  title: string;
-  diff: string;
-};
-
-const contributions: Contribution[] = [
-  { repo: "nuttx-apps", number: 3474, state: "Merged", title: "Basic package lifecycle helper", diff: "+2,920 · 15 files" },
-  { repo: "nuttx-apps", number: 3519, state: "Merged", title: "Module metadata for executable tools", diff: "+32 −18 · 11 files" },
-  { repo: "nuttx-apps", number: 3526, state: "Merged", title: "Packaged shared-library fixtures", diff: "+729 −31 · 8 files" },
-  { repo: "nuttx-apps", number: 3531, state: "Merged", title: "ELF and nxpkg validation fixtures", diff: "+687 −3 · 6 files" },
-  { repo: "nuttx-apps", number: 3642, state: "Merged", title: "Configurable, crash-aware package storage", diff: "+522 −57 · 5 files" },
-  { repo: "nuttx-apps", number: 3718, state: "Merged", title: "Catalog, path, and version validation", diff: "+355 −56 · 2 files" },
-  { repo: "nuttx-apps", number: 3719, state: "Merged", title: "Network catalog and artifact fetching", diff: "+734 −1 · 4 files" },
-  { repo: "nuttx-apps", number: 3720, state: "Merged", title: "Lifecycle, rollback, locks, and recovery", diff: "+628 −111 · 2 files" },
-  { repo: "nuttx-apps", number: 3659, state: "Merged", title: "LVGL touchscreen diagnostic", diff: "+266 · 5 files" },
-  { repo: "nuttx-apps", number: 3643, state: "Open", title: "NXStore touchscreen frontend", diff: "+1,941 −87 · 7 files" },
-  { repo: "nuttx-apps", number: 3644, state: "Open", title: "NXDoom module and RGB565 fixes", diff: "+267 −23 · 16 files" },
-  { repo: "nuttx-apps", number: 3660, state: "Open", title: "LVGL touchscreen calculator", diff: "+625 · 5 files" },
-  { repo: "nuttx-apps", number: 3661, state: "Open", title: "Supervised loadable game processes", diff: "+95 −28 · 4 files" },
-  { repo: "nuttx-apps", number: 3662, state: "Open", title: "Brickmatch touchscreen and module support", diff: "+324 −17 · 4 files" },
-  { repo: "nuttx-apps", number: 3663, state: "Open", title: "Package metadata and RGB565 icon export", diff: "+123 −8 · 1 file" },
-  { repo: "nuttx-apps", number: 3730, state: "Open", title: "Declarative shared-library support", diff: "+257 −27 · 8 files" },
-  { repo: "nuttx", number: 18875, state: "Open draft", title: "nxpkg and NXStore documentation", diff: "+253 · 3 files" },
-  { repo: "nuttx", number: 19888, state: "Open", title: "Shared-library declaration documentation", diff: "+25 · 1 file" },
-];
-
 function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className={styles.textLink}>
@@ -149,8 +77,8 @@ export default function GSoCWorkProductPage() {
                 Read the final report
                 <Download aria-hidden="true" />
               </a>
-              <a className={styles.secondaryAction} href="#contributions">
-                Browse contributions
+              <a className={styles.secondaryAction} href="#workflow">
+                See how it works
                 <ArrowDown aria-hidden="true" />
               </a>
             </div>
@@ -177,49 +105,41 @@ export default function GSoCWorkProductPage() {
           </div>
         </section>
 
-        <section className={`${styles.shell} ${styles.section}`} aria-labelledby="outcome-title">
+        <section id="workflow" className={`${styles.shell} ${styles.section}`} aria-labelledby="workflow-title">
           <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>01 / Outcome</span>
+            <span className={styles.sectionNumber}>01 / In one minute</span>
             <div>
-              <h2 id="outcome-title">From one ELF package to a device-side workflow</h2>
+              <h2 id="workflow-title">What happens after someone chooses an application?</h2>
               <p>
-                NuttX could already load an ELF binary. The missing part was everything around
-                that loader: package metadata, checks before installation, persistent state,
-                safe lifecycle operations, and an interface that could start and stop installed
-                applications. I built the project in that dependency order, beginning with one
-                local <code>hello</code> package and adding the UI only after the package state was
-                dependable enough to consume.
+                The project is a four-stage path around NuttX&apos;s existing ELF loader.
+                Choose a stage below to see its input, what <code>nxpkg</code> owns, and
+                what becomes possible next.
               </p>
             </div>
           </div>
+          <ProjectFlow />
+        </section>
 
-          <div className={styles.deliverables}>
-            {deliverables.map((item) => (
-              <article key={item.number} className={styles.deliverable}>
-                <div className={styles.deliverableIndex}>{item.number}</div>
-                <div className={styles.deliverableBody}>
-                  <div className={styles.deliverableHeading}>
-                    <h3>{item.title}</h3>
-                    <span className={item.tone === "merged" ? styles.statusMerged : styles.statusOpen}>
-                      {item.status}
-                    </span>
-                  </div>
-                  <p>{item.body}</p>
-                  <div className={styles.inlineLinks}>
-                    {item.links.map(([label, href]) => (
-                      <ExternalLink key={href} href={href}>{label}</ExternalLink>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
+        <section className={`${styles.shell} ${styles.section}`} aria-labelledby="outcome-title">
+          <div className={styles.sectionIntro}>
+            <span className={styles.sectionNumber}>02 / Deliverables</span>
+            <div>
+              <h2 id="outcome-title">Three pieces make the workflow usable</h2>
+              <p>
+                The package lifecycle is the merged foundation. NXStore turns that API into a
+                device-side experience, while Library.mk explores how applications can package
+                shared dependencies. Open each outcome for the implementation detail and its
+                review links.
+              </p>
+            </div>
           </div>
+          <DeliverablesExplorer />
         </section>
 
         <section className={styles.darkSection} aria-labelledby="architecture-title">
           <div className={`${styles.shell} ${styles.section}`}>
             <div className={styles.sectionIntro}>
-              <span className={styles.sectionNumber}>02 / Architecture</span>
+              <span className={styles.sectionNumber}>03 / Architecture</span>
               <div>
                 <h2 id="architecture-title">One owner for package state, one runtime path</h2>
                 <p>
@@ -244,12 +164,29 @@ export default function GSoCWorkProductPage() {
                 dynamic applications remain separate concerns.
               </figcaption>
             </figure>
+            <div className={styles.architectureLegend} aria-label="How to read the architecture diagram">
+              <div>
+                <span>01</span>
+                <strong>Repository input is untrusted</strong>
+                <p>Catalogs and artifacts are checked before they can affect installed state.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <strong>nxpkg owns package state</strong>
+                <p>The shell and NXStore use the same lifecycle API instead of maintaining separate state.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <strong>NuttX owns execution</strong>
+                <p>The existing loader and a supervisor remain responsible for application processes.</p>
+              </div>
+            </div>
           </div>
         </section>
 
         <section className={`${styles.shell} ${styles.section}`} aria-labelledby="evidence-title">
           <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>03 / Evidence</span>
+            <span className={styles.sectionNumber}>04 / Evidence</span>
             <div>
               <h2 id="evidence-title">Tested beyond a successful module load</h2>
               <p>
@@ -290,20 +227,12 @@ export default function GSoCWorkProductPage() {
             </figure>
           </div>
 
-          <div className={styles.validationList} role="list" aria-label="Validation summary">
-            {validation.map(([scenario, result, environment]) => (
-              <div key={scenario} className={styles.validationRow} role="listitem">
-                <span>{scenario}</span>
-                <strong className={result === "Pass" ? styles.pass : styles.limited}>{result}</strong>
-                <span>{environment}</span>
-              </div>
-            ))}
-          </div>
+          <ValidationExplorer />
         </section>
 
         <section id="contributions" className={`${styles.shell} ${styles.section}`} aria-labelledby="contributions-title">
           <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>04 / Upstream work</span>
+            <span className={styles.sectionNumber}>05 / Upstream work</span>
             <div>
               <h2 id="contributions-title">The public contribution record</h2>
               <p>
@@ -314,30 +243,7 @@ export default function GSoCWorkProductPage() {
             </div>
           </div>
 
-          <div className={styles.contributionHeader} aria-hidden="true">
-            <span>Pull request</span>
-            <span>Contribution</span>
-            <span>Status</span>
-            <span>Snapshot diff</span>
-          </div>
-          <ol className={styles.contributionList}>
-            {contributions.map((item) => {
-              const href = `https://github.com/apache/${item.repo}/pull/${item.number}`;
-              return (
-                <li key={`${item.repo}-${item.number}`}>
-                  <a href={href} target="_blank" rel="noreferrer" className={styles.contributionLink}>
-                    <span className={styles.prRef}>{item.repo} #{item.number}</span>
-                    <span className={styles.prTitle}>{item.title}</span>
-                    <span className={item.state === "Merged" ? styles.stateMerged : styles.stateOpen}>
-                      {item.state}
-                    </span>
-                    <span className={styles.prDiff}>{item.diff}</span>
-                    <ArrowUpRight aria-hidden="true" />
-                  </a>
-                </li>
-              );
-            })}
-          </ol>
+          <ContributionExplorer />
           <p className={styles.diffNote}>
             Diff totals describe the GitHub review surface. They do not measure lines written from scratch.
           </p>
@@ -346,7 +252,7 @@ export default function GSoCWorkProductPage() {
         <section className={styles.closingSection} aria-labelledby="next-title">
           <div className={`${styles.shell} ${styles.closingGrid}`}>
             <div>
-              <span className={styles.sectionNumber}>05 / What remains</span>
+              <span className={styles.sectionNumber}>06 / What remains</span>
               <h2 id="next-title">A solid base, with clear next steps</h2>
             </div>
             <div className={styles.remainingWork}>
