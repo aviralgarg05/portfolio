@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import SiteShell from "@/components/SiteShell";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
@@ -24,8 +24,7 @@ export default function RootLayout({
       className={`${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
-        <Navigation />
-        <main className="pt-16 md:pt-8 md:ml-64 px-6 md:px-8 pb-6 md:pb-16 max-w-4xl">{children}</main>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
