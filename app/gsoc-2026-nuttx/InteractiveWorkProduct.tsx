@@ -259,9 +259,9 @@ export function ProjectFlow() {
           role="tabpanel"
           aria-labelledby={`flow-tab-${activeStep.id}`}
           className={styles.flowPanel}
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={shouldReduceMotion ? undefined : { opacity: 0, y: -5 }}
+          exit={{ opacity: 0, y: -5 }}
           transition={getTransition(shouldReduceMotion)}
         >
           <div className={styles.flowPanelIntro}>
@@ -340,9 +340,9 @@ export function DeliverablesExplorer() {
                 <motion.div
                   id={`deliverable-panel-${item.number}`}
                   className={styles.deliverablePanel}
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: -6 }}
+                  initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={shouldReduceMotion ? undefined : { opacity: 0, y: -4 }}
+                  exit={{ opacity: 0, y: -4 }}
                   transition={getTransition(shouldReduceMotion)}
                 >
                   <p>{item.body}</p>
@@ -415,9 +415,9 @@ export function ValidationExplorer() {
               className={styles.validationRow}
               role="listitem"
               layout={!shouldReduceMotion}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={shouldReduceMotion ? undefined : { opacity: 0, y: -4 }}
+              exit={{ opacity: 0, y: -4 }}
               transition={getTransition(shouldReduceMotion)}
             >
               <span>{item.scenario}</span>
@@ -440,7 +440,7 @@ const contributionFilters: Array<{ id: ContributionFilter; label: string }> = [
 ];
 
 export function ContributionExplorer() {
-  const [filter, setFilter] = useState<ContributionFilter>("all");
+  const [filter, setFilter] = useState<ContributionFilter>("merged");
   const shouldReduceMotion = useReducedMotion();
   const visibleContributions = useMemo(
     () => contributions.filter((item) => {
@@ -459,12 +459,7 @@ export function ContributionExplorer() {
           <strong>9 merged · 9 in review</strong>
         </div>
         <div className={styles.snapshotMeterTrack} aria-label="Half of the 18 pull requests were merged at the August 18 snapshot">
-          <motion.span
-            initial={shouldReduceMotion ? false : { scaleX: 0 }}
-            whileInView={{ scaleX: 0.5 }}
-            viewport={{ once: true, amount: 0.8 }}
-            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, ease: EASE_OUT }}
-          />
+          <span />
         </div>
       </div>
 
@@ -509,9 +504,9 @@ export function ContributionExplorer() {
               <motion.li
                 key={`${item.repo}-${item.number}`}
                 layout={!shouldReduceMotion}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={shouldReduceMotion ? undefined : { opacity: 0, y: -4 }}
+                exit={{ opacity: 0, y: -4 }}
                 transition={getTransition(shouldReduceMotion)}
               >
                 <a href={href} target="_blank" rel="noreferrer" className={styles.contributionLink}>

@@ -29,9 +29,8 @@ const REPORT_URL =
   "/gsoc-2026-nuttx/Aviral-Garg-GSoC-2026-Final-Work-Product.pdf";
 
 const projectDetails = [
+  ["Project", "Apache NuttX · Apache Software Foundation"],
   ["Contributor", "Aviral Garg"],
-  ["Organization", "Apache Software Foundation"],
-  ["Project", "Apache NuttX"],
   ["Mentors", "Alan Carvalho de Assis · Halysson Carvalho"],
   ["Snapshot", "August 18, 2026"],
 ];
@@ -107,7 +106,7 @@ export default function GSoCWorkProductPage() {
 
         <section id="workflow" className={`${styles.shell} ${styles.section}`} aria-labelledby="workflow-title">
           <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>01 / In one minute</span>
+            <span className={styles.sectionNumber}>How it works</span>
             <div>
               <h2 id="workflow-title">What happens after someone chooses an application?</h2>
               <p>
@@ -118,11 +117,61 @@ export default function GSoCWorkProductPage() {
             </div>
           </div>
           <ProjectFlow />
+
+          <details className={styles.architectureDetails}>
+            <summary>
+              <span>
+                <strong>View the detailed architecture</strong>
+                <small>Repository input, package state, NXStore, and the NuttX runtime.</small>
+              </span>
+              <ArrowDown aria-hidden="true" />
+            </summary>
+            <div className={styles.architectureContent}>
+              <div className={styles.architectureIntro}>
+                <h3>One owner for package state, one runtime path</h3>
+                <p>
+                  The command line and NXStore call the same <code>nxpkg</code> service.
+                  Repository input is checked before it reaches the package root; the loader
+                  and supervisor then own execution and shutdown.
+                </p>
+              </div>
+              <figure className={styles.architectureFigure}>
+                <Image
+                  src="/gsoc-2026-nuttx/nxpkg-architecture.png"
+                  alt="Architecture diagram showing a static package repository flowing through nxpkg into persistent package state, NXStore, and the NuttX loader and supervisor"
+                  width={2160}
+                  height={1260}
+                  sizes="(max-width: 760px) 100vw, 1120px"
+                />
+                <figcaption>
+                  Repository input, verified package state, and supervised applications remain
+                  separate concerns.
+                </figcaption>
+              </figure>
+              <div className={styles.architectureLegend} aria-label="How to read the architecture diagram">
+                <div>
+                  <span>01</span>
+                  <strong>Repository input is untrusted</strong>
+                  <p>Catalogs and artifacts are checked before they affect installed state.</p>
+                </div>
+                <div>
+                  <span>02</span>
+                  <strong>nxpkg owns package state</strong>
+                  <p>The shell and NXStore use one lifecycle API instead of separate state.</p>
+                </div>
+                <div>
+                  <span>03</span>
+                  <strong>NuttX owns execution</strong>
+                  <p>The loader and supervisor remain responsible for application processes.</p>
+                </div>
+              </div>
+            </div>
+          </details>
         </section>
 
         <section className={`${styles.shell} ${styles.section}`} aria-labelledby="outcome-title">
           <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>02 / Deliverables</span>
+            <span className={styles.sectionNumber}>What I built</span>
             <div>
               <h2 id="outcome-title">Three pieces make the workflow usable</h2>
               <p>
@@ -136,59 +185,11 @@ export default function GSoCWorkProductPage() {
           <DeliverablesExplorer />
         </section>
 
-        <section className={styles.darkSection} aria-labelledby="architecture-title">
-          <div className={`${styles.shell} ${styles.section}`}>
-            <div className={styles.sectionIntro}>
-              <span className={styles.sectionNumber}>03 / Architecture</span>
-              <div>
-                <h2 id="architecture-title">One owner for package state, one runtime path</h2>
-                <p>
-                  The command line and NXStore call the same <code>nxpkg</code> service.
-                  Repository input is checked before it reaches the configured package root;
-                  the loader and supervisor then own process execution and shutdown.
-                </p>
-              </div>
-            </div>
-
-            <figure className={styles.architectureFigure}>
-              <Image
-                src="/gsoc-2026-nuttx/nxpkg-architecture.png"
-                alt="Architecture diagram showing a static package repository flowing through nxpkg into persistent package state, NXStore, and the NuttX loader and supervisor"
-                width={2160}
-                height={1260}
-                sizes="(max-width: 760px) 100vw, 1120px"
-                loading="eager"
-              />
-              <figcaption>
-                The final boundary: repository input, verified package state, and supervised
-                dynamic applications remain separate concerns.
-              </figcaption>
-            </figure>
-            <div className={styles.architectureLegend} aria-label="How to read the architecture diagram">
-              <div>
-                <span>01</span>
-                <strong>Repository input is untrusted</strong>
-                <p>Catalogs and artifacts are checked before they can affect installed state.</p>
-              </div>
-              <div>
-                <span>02</span>
-                <strong>nxpkg owns package state</strong>
-                <p>The shell and NXStore use the same lifecycle API instead of maintaining separate state.</p>
-              </div>
-              <div>
-                <span>03</span>
-                <strong>NuttX owns execution</strong>
-                <p>The existing loader and a supervisor remain responsible for application processes.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className={`${styles.shell} ${styles.section}`} aria-labelledby="evidence-title">
           <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>04 / Evidence</span>
+            <span className={styles.sectionNumber}>Proof and source</span>
             <div>
-              <h2 id="evidence-title">Tested beyond a successful module load</h2>
+              <h2 id="evidence-title">Tested on hardware, documented in public</h2>
               <p>
                 I kept hardware, simulator, and environment-limited evidence separate. The
                 primary final workflow ran on an ESP32-S3 800 × 480 touchscreen board; the NuttX
@@ -227,32 +228,33 @@ export default function GSoCWorkProductPage() {
             </figure>
           </div>
 
-          <ValidationExplorer />
-        </section>
-
-        <section id="contributions" className={`${styles.shell} ${styles.section}`} aria-labelledby="contributions-title">
-          <div className={styles.sectionIntro}>
-            <span className={styles.sectionNumber}>05 / Upstream work</span>
-            <div>
-              <h2 id="contributions-title">The public contribution record</h2>
-              <p>
-                These are the 18 pull requests in the final work-product snapshot. Merged means
-                accepted into an Apache repository. Open means implemented publicly and tested
-                where stated, but still subject to review and change.
-              </p>
+          <div className={styles.evidenceBlock}>
+            <div className={styles.subsectionIntro}>
+              <h3>Validation checks</h3>
+              <p>Filter the results by where each check was run.</p>
             </div>
+            <ValidationExplorer />
           </div>
 
-          <ContributionExplorer />
-          <p className={styles.diffNote}>
-            Diff totals describe the GitHub review surface. They do not measure lines written from scratch.
-          </p>
+          <div id="contributions" className={styles.evidenceBlock} aria-labelledby="contributions-title">
+            <div className={styles.subsectionIntro}>
+              <h3 id="contributions-title">Public pull requests</h3>
+              <p>
+                Merged work appears first. Use the filters to view all 18 pull requests or the
+                work that was still under review on August 18.
+              </p>
+            </div>
+            <ContributionExplorer />
+            <p className={styles.diffNote}>
+              Diff totals describe the GitHub review surface, not lines written from scratch.
+            </p>
+          </div>
         </section>
 
         <section className={styles.closingSection} aria-labelledby="next-title">
           <div className={`${styles.shell} ${styles.closingGrid}`}>
             <div>
-              <span className={styles.sectionNumber}>06 / What remains</span>
+              <span className={styles.sectionNumber}>What comes next</span>
               <h2 id="next-title">A solid base, with clear next steps</h2>
             </div>
             <div className={styles.remainingWork}>
@@ -282,11 +284,11 @@ export default function GSoCWorkProductPage() {
 
       <footer className={styles.footer}>
         <div className={styles.shell}>
-          <p>
-            Built during Google Summer of Code 2026 with Apache NuttX. Thanks to Alan Carvalho de
-            Assis, Halysson Carvalho, and the NuttX community for the reviews and guidance.
-          </p>
-          <span>Work-product snapshot · August 18, 2026</span>
+          <strong>GSoC 2026 work product for Apache NuttX</strong>
+          <div className={styles.footerMeta}>
+            <span>Aviral Garg · August 18, 2026</span>
+            <span>Mentored by Alan Carvalho de Assis and Halysson Carvalho.</span>
+          </div>
         </div>
       </footer>
     </article>
