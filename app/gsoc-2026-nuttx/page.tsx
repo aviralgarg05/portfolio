@@ -124,7 +124,10 @@ export default function GSoCWorkProductPage() {
                 <strong>View the detailed architecture</strong>
                 <small>Repository input, package state, NXStore, and the NuttX runtime.</small>
               </span>
-              <ArrowDown aria-hidden="true" />
+              <span className={styles.disclosureAction} aria-hidden="true">
+                <span>Open details</span>
+                <ArrowDown />
+              </span>
             </summary>
             <div className={styles.architectureContent}>
               <div className={styles.architectureIntro}>
