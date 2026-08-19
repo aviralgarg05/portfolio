@@ -257,20 +257,22 @@ export default function GSoCWorkProductPage() {
         <section className={styles.closingSection} aria-labelledby="next-title">
           <div className={`${styles.shell} ${styles.closingGrid}`}>
             <div>
-              <span className={styles.sectionNumber}>What comes next</span>
-              <h2 id="next-title">A solid base, with clear next steps</h2>
+              <span className={styles.sectionNumber}>Future work</span>
+              <h2 id="next-title">From a working prototype to a real NuttX distro</h2>
             </div>
             <div className={styles.remainingWork}>
               <p>
-                The merged core is usable today. The immediate work is to finish review on NXStore,
-                the application set, Library.mk, and the documentation, then keep tightening the
-                workflow as more boards exercise it.
+                The merged package core is usable today, and the product path runs on hardware.
+                The next milestone is a store that explains each application before installation
+                and a distribution that another person can reproduce on a supported board.
               </p>
               <ul>
                 <li>Integrate the open product and library pull requests into mainline.</li>
-                <li>Add signed catalogs or packages; SHA-256 alone does not authenticate a publisher.</li>
-                <li>Build and maintain a public demonstration catalog.</li>
-                <li>Explore FDPIC and the optional Dropbear extension without claiming support early.</li>
+                <li>Display application icons and compact previews in NXStore before installation.</li>
+                <li>Publish a reproducible ESP32-S3 reference distro with a maintained catalog and recovery path.</li>
+                <li>Port the same distribution contract to STM32H7 and other capable boards.</li>
+                <li>Add signed metadata, repository policy, storage limits, and dependency rules.</li>
+                <li>Finish the shared-library interface, then investigate CMake and FDPIC separately.</li>
               </ul>
               <div className={styles.closingLinks}>
                 <ExternalLink href="https://github.com/apache/nuttx/issues/17351">Original project issue</ExternalLink>
