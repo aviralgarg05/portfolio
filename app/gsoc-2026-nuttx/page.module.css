@@ -792,7 +792,7 @@
   position: absolute;
   inset: -1px;
   background: var(--foreground);
-  transform: scaleX(0.5);
+  transform: scaleX(0.7222);
   transform-origin: left center;
 }
 

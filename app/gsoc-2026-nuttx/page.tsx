@@ -32,13 +32,13 @@ const projectDetails = [
   ["Project", "Apache NuttX · Apache Software Foundation"],
   ["Contributor", "Aviral Garg"],
   ["Mentors", "Alan Carvalho de Assis · Halysson Carvalho"],
-  ["Snapshot", "August 18, 2026"],
+  ["Snapshot", "August 21, 2026"],
 ];
 
 const stats = [
   ["18", "GSoC pull requests"],
-  ["9", "merged upstream"],
-  ["9", "open at snapshot"],
+  ["13", "merged upstream"],
+  ["5", "open at snapshot"],
   ["10,783", "GitHub additions"],
 ];
 
@@ -178,10 +178,9 @@ export default function GSoCWorkProductPage() {
             <div>
               <h2 id="outcome-title">Three pieces make the workflow usable</h2>
               <p>
-                The package lifecycle is the merged foundation. NXStore turns that API into a
-                device-side experience, while Library.mk explores how applications can package
-                shared dependencies. Open each outcome for the implementation detail and its
-                review links.
+                The package lifecycle, NXStore, and Library.mk are now upstream. Together they
+                provide the device-side experience and a way for applications to package shared
+                dependencies. Open each outcome for implementation details and source links.
               </p>
             </div>
           </div>
@@ -244,7 +243,7 @@ export default function GSoCWorkProductPage() {
               <h3 id="contributions-title">Public pull requests</h3>
               <p>
                 Merged work appears first. Use the filters to view all 18 pull requests or the
-                work that was still under review on August 18.
+                work that was still under review on August 21.
               </p>
             </div>
             <ContributionExplorer />
@@ -262,17 +261,18 @@ export default function GSoCWorkProductPage() {
             </div>
             <div className={styles.remainingWork}>
               <p>
-                The merged package core is usable today, and the product path runs on hardware.
-                The next milestone is a store that explains each application before installation
-                and a distribution that another person can reproduce on a supported board.
+                The package core, NXStore, and shared-library declaration are upstream, and the
+                product path runs on hardware. The next milestone is a store that explains each
+                application before installation and a distribution that another person can
+                reproduce on a supported board.
               </p>
               <ul>
-                <li>Integrate the open product and library pull requests into mainline.</li>
+                <li>Integrate the remaining application, metadata, and documentation pull requests.</li>
                 <li>Display application icons and compact previews in NXStore before installation.</li>
                 <li>Publish a reproducible ESP32-S3 reference distro with a maintained catalog and recovery path.</li>
                 <li>Port the same distribution contract to STM32H7 and other capable boards.</li>
                 <li>Add signed metadata, repository policy, storage limits, and dependency rules.</li>
-                <li>Finish the shared-library interface, then investigate CMake and FDPIC separately.</li>
+                <li>Extend the merged shared-library support, then investigate CMake and FDPIC separately.</li>
               </ul>
               <div className={styles.closingLinks}>
                 <ExternalLink href="https://github.com/apache/nuttx/issues/17351">Original project issue</ExternalLink>
@@ -291,7 +291,7 @@ export default function GSoCWorkProductPage() {
         <div className={styles.shell}>
           <strong>GSoC 2026 work product for Apache NuttX</strong>
           <div className={styles.footerMeta}>
-            <span>Aviral Garg · August 18, 2026</span>
+            <span>Aviral Garg · August 21, 2026</span>
             <span>Mentored by Alan Carvalho de Assis and Halysson Carvalho.</span>
           </div>
         </div>

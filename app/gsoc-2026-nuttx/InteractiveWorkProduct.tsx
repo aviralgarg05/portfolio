@@ -97,9 +97,9 @@ const deliverables = [
     number: "02",
     title: "An application store that runs on the device",
     outcome: "Users can discover, install, launch, and close applications from a touchscreen UI.",
-    status: "Tested · Open",
-    tone: "open",
-    body: "NXStore reads nxpkg state through its public API, keeps slow work away from the LVGL event thread, and launches installed ELF applications under a supervisor. The same path was exercised with a diagnostic, calculator, games, exported metadata and icons, and NXDoom on an ESP32-S3 touchscreen target.",
+    status: "Merged · Tested",
+    tone: "merged",
+    body: "NXStore is now upstream. It reads nxpkg state through its public API, keeps slow work away from the LVGL event thread, and launches installed ELF applications under a supervisor. The same path was exercised with a diagnostic, calculator, games, exported metadata and icons, and NXDoom on an ESP32-S3 touchscreen target.",
     links: [
       ["NXStore", "https://github.com/apache/nuttx-apps/pull/3643"],
       ["Application set", "https://github.com/apache/nuttx-apps/pull/3660"],
@@ -110,9 +110,9 @@ const deliverables = [
     number: "03",
     title: "Declarative shared-library packaging",
     outcome: "Applications can declare loadable libraries instead of embedding every dependency.",
-    status: "Tested · Open",
-    tone: "open",
-    body: "Library.mk adds a small Android.mk-style declaration for building loadable libraries from C or C++ sources. I validated function and shared-data resolution, dependencies between modules, mixed-language inputs, and clean unloads on the tested Xtensa configuration. This is shared-library packaging; it is not an FDPIC claim.",
+    status: "Merged · Tested",
+    tone: "merged",
+    body: "Library.mk is now upstream with its companion documentation. It adds a small Android.mk-style declaration for building loadable libraries from C or C++ sources. I validated function and shared-data resolution, dependencies between modules, mixed-language inputs, and clean unloads on the tested Xtensa configuration. This is shared-library packaging; it is not an FDPIC claim.",
     links: [
       ["Library.mk", "https://github.com/apache/nuttx-apps/pull/3730"],
       ["Documentation", "https://github.com/apache/nuttx/pull/19888"],
@@ -163,15 +163,15 @@ const contributions: Contribution[] = [
   { repo: "nuttx-apps", number: 3719, state: "Merged", title: "Network catalog and artifact fetching", diff: "+734 −1 · 4 files" },
   { repo: "nuttx-apps", number: 3720, state: "Merged", title: "Lifecycle, rollback, locks, and recovery", diff: "+628 −111 · 2 files" },
   { repo: "nuttx-apps", number: 3659, state: "Merged", title: "LVGL touchscreen diagnostic", diff: "+266 · 5 files" },
-  { repo: "nuttx-apps", number: 3643, state: "Open", title: "NXStore touchscreen frontend", diff: "+1,941 −87 · 7 files" },
+  { repo: "nuttx-apps", number: 3643, state: "Merged", title: "NXStore touchscreen frontend", diff: "+1,941 −87 · 7 files" },
   { repo: "nuttx-apps", number: 3644, state: "Open", title: "NXDoom module and RGB565 fixes", diff: "+267 −23 · 16 files" },
   { repo: "nuttx-apps", number: 3660, state: "Open", title: "LVGL touchscreen calculator", diff: "+625 · 5 files" },
   { repo: "nuttx-apps", number: 3661, state: "Open", title: "Supervised loadable game processes", diff: "+95 −28 · 4 files" },
-  { repo: "nuttx-apps", number: 3662, state: "Open", title: "Brickmatch touchscreen and module support", diff: "+324 −17 · 4 files" },
+  { repo: "nuttx-apps", number: 3662, state: "Merged", title: "Brickmatch touchscreen and module support", diff: "+324 −17 · 4 files" },
   { repo: "nuttx-apps", number: 3663, state: "Open", title: "Package metadata and RGB565 icon export", diff: "+123 −8 · 1 file" },
-  { repo: "nuttx-apps", number: 3730, state: "Open", title: "Declarative shared-library support", diff: "+257 −27 · 8 files" },
+  { repo: "nuttx-apps", number: 3730, state: "Merged", title: "Declarative shared-library support", diff: "+257 −27 · 8 files" },
   { repo: "nuttx", number: 18875, state: "Open draft", title: "nxpkg and NXStore documentation", diff: "+253 · 3 files" },
-  { repo: "nuttx", number: 19888, state: "Open", title: "Shared-library declaration documentation", diff: "+25 · 1 file" },
+  { repo: "nuttx", number: 19888, state: "Merged", title: "Shared-library declaration documentation", diff: "+25 · 1 file" },
 ];
 
 function getTransition(shouldReduceMotion: boolean | null) {
@@ -456,9 +456,9 @@ export function ContributionExplorer() {
       <div className={styles.snapshotMeter}>
         <div className={styles.snapshotMeterHeader}>
           <span>Upstream snapshot</span>
-          <strong>9 merged · 9 in review</strong>
+          <strong>13 merged · 5 in review</strong>
         </div>
-        <div className={styles.snapshotMeterTrack} aria-label="Half of the 18 pull requests were merged at the August 18 snapshot">
+        <div className={styles.snapshotMeterTrack} aria-label="Thirteen of 18 pull requests were merged at the August 21 snapshot">
           <span />
         </div>
       </div>
@@ -486,8 +486,8 @@ export function ContributionExplorer() {
 
       <p className={styles.filterSummary} aria-live="polite">
         {filter === "all" && "Showing the complete 18-PR work-product record."}
-        {filter === "merged" && "Showing 9 pull requests accepted into Apache repositories."}
-        {filter === "review" && "Showing 9 public pull requests still under review at the snapshot."}
+        {filter === "merged" && "Showing 13 pull requests accepted into Apache repositories."}
+        {filter === "review" && "Showing 5 public pull requests still under review at the snapshot."}
       </p>
 
       <div className={styles.contributionHeader} aria-hidden="true">
