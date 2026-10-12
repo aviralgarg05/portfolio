@@ -12,6 +12,7 @@ const navItems = [
   { name: "about", path: "/" },
   { name: "experience", path: "/experience" },
   { name: "work", path: "/work" },
+  { name: "casement", path: "/casement" },
   { name: "open source", path: "/open-source" },
   { name: "research", path: "/research" },
   { name: "writing", path: "/writing" },

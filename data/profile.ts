@@ -214,6 +214,21 @@ export const research = {
 
 export const projects = [
   {
+    name: "Casement",
+    tagline: "A Dynamic Island for the MacBook notch",
+    description: "Approve a coding agent's permission requests from the notch without leaving the editor, mirror the iPhone's Live Activities, and keep Now Playing, meetings and a shelf in the menu bar row. Swift 6, no account, no telemetry.",
+    tech: ["Swift 6", "SwiftUI", "AppKit", "Accessibility", "macOS"],
+    links: {
+      github: "https://github.com/aviralgarg05/casement",
+      live: "https://aviralgarg.dev/casement",
+    },
+    metrics: {
+      version: "0.4.2",
+    },
+    featured: true,
+    status: "active",
+  },
+  {
     name: "AgentUnit",
     tagline: "Evaluation framework for multi-agent systems",
     description: "Evaluation, monitoring, and benchmarking framework for multi-agent systems and RAG workflows. Published on PyPI with 200+ downloads in first 48 hours.",
