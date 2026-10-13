@@ -185,7 +185,7 @@ export default function Navigation() {
             </a>
           </div>
           <div className="mt-4 text-xs text-accent">
-            &copy; 2025 Aviral Garg
+            &copy; 2026 Aviral Garg
           </div>
         </div>
       </aside>
