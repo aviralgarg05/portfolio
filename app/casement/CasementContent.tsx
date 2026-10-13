@@ -210,7 +210,7 @@ export default function CasementContent() {
           {/* The film. preload="none" and a poster, because it is 13 MB and nobody should pay
               for it until they press play: the poster is 37 KB and carries the wordmark, so the
               section still says what it is on a phone over mobile data. */}
-          <figure className="mt-10">
+          <figure className="mt-10" id="film">
             <video
               controls
               preload="none"
