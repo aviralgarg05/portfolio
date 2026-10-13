@@ -206,6 +206,29 @@ export default function CasementContent() {
               on.
             </figcaption>
           </figure>
+
+          {/* The film. preload="none" and a poster, because it is 13 MB and nobody should pay
+              for it until they press play: the poster is 37 KB and carries the wordmark, so the
+              section still says what it is on a phone over mobile data. */}
+          <figure className="mt-10">
+            <video
+              controls
+              preload="none"
+              playsInline
+              poster="/casement/launch-poster.jpg"
+              width={1920}
+              height={1080}
+              className="w-full border border-border"
+              aria-label="A forty two second film showing what Casement does"
+            >
+              <source src="/casement/launch.mp4" type="video/mp4" />
+              Your browser cannot play this video.{" "}
+              <a href="/casement/launch.mp4">Download it instead</a>.
+            </video>
+            <figcaption className="mt-2 text-xs text-accent">
+              Forty two seconds: what the notch does once Casement is in it.
+            </figcaption>
+          </figure>
         </div>
       </motion.section>
 
