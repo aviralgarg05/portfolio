@@ -30,11 +30,11 @@ function SectionHeading({ title, detail }: { title: string; detail: string }) {
 
 const heroStats = [
   { label: "version", value: "0.4.2" },
-  { label: "apps with their own look", value: "137" },
-  { label: "macOS", value: "14+" },
+  { label: "apps styled", value: "137" },
+  { label: "or later", value: "macOS 14" },
 ];
 
-const tech = ["Swift 6", "SwiftUI", "AppKit", "Accessibility", "Core Media", "SwiftPM"];
+const tech = ["Swift 6", "SwiftUI", "AppKit", "Accessibility", "MediaRemote", "SwiftPM"];
 
 const doesThings = [
   {
@@ -45,7 +45,7 @@ const doesThings = [
   {
     title: "Your iPhone's Live Activities",
     body:
-      "Rides, deliveries, scores and flights in the notch instead of behind it, with 137 apps' own looks. How much shows depends on what each app exposes to Accessibility, and where that is too little Casement leaves Apple's own pill alone rather than covering it with less.",
+      "Rides, deliveries, scores and flights in the notch instead of behind it, with 137 apps' own looks. How much shows depends on what each app exposes to Accessibility, and where that is too little Casement leaves Apple's own pill alone rather than covering it with less. Mirroring needs macOS 26 or later, and has only been tested on macOS 27.",
   },
   {
     title: "Now Playing",
@@ -65,7 +65,7 @@ const doesThings = [
   {
     title: "Eleven tools, each off until you want it",
     body:
-      "To-dos, a note, a converter, emoji, the weather, a camera mirror, a teleprompter, stocks and sales, each a page under More.",
+      "To-dos, a note, a converter, emoji, the weather, a camera mirror, a teleprompter, stocks, sales, Shortcuts and a system readout, each a page under More.",
   },
   {
     title: "Your own activities",
@@ -83,7 +83,7 @@ const restraint = [
   {
     title: "It costs nothing when idle",
     body:
-      "Everything is driven by events rather than polling, and the pointer is not watched until it reaches the notch. CPU is measured against a budget in ten island states on every release.",
+      "Everything is driven by events, and the pointer is not watched until it reaches the notch. CPU is measured against a budget in ten island states on every release.",
   },
   {
     title: "It stays on your Mac",
@@ -141,64 +141,72 @@ export default function CasementContent() {
           ))}
         </motion.div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {tech.map((item, index) => (
-            <TechTag key={item} tech={item} index={index} />
-          ))}
-        </div>
+        {/* The tech tags drop below the demo on a phone. An earlier revision ran
+            them straight after the stats, so the GIF's top edge measured y=701
+            against an 812 fold and a first-time visitor scrolled past six
+            framework names before seeing the app. Desktop order is unchanged. */}
+        <div className="flex flex-col">
+          <div className="order-last mt-6 flex flex-wrap gap-2 md:order-none">
+            {tech.map((item, index) => (
+              <TechTag key={item} tech={item} index={index} />
+            ))}
+          </div>
 
-        <div className="mt-6 flex flex-wrap gap-4 text-xs">
-          <motion.a
-            href={LATEST}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
-            whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
-            whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-          >
-            <Download className="w-3 h-3" /> download
-            <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-          </motion.a>
-          <motion.a
-            href={REPO}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
-            whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
-            whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-          >
-            <FaGithub className="w-3 h-3" /> github
-            <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-          </motion.a>
-          <motion.a
-            href={`${REPO}#readme`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
-            whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
-            whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-          >
-            <BookOpen className="w-3 h-3" /> docs
-            <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-          </motion.a>
-        </div>
+          <div className="mt-6 flex flex-wrap gap-4 text-xs">
+            <motion.a
+              href={LATEST}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+              whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+            >
+              <Download className="w-3 h-3" /> download
+              <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            </motion.a>
+            <motion.a
+              href={REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+              whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+            >
+              <FaGithub className="w-3 h-3" /> github
+              <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            </motion.a>
+            <motion.a
+              href={`${REPO}/tree/main/docs`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-link-pill group/link inline-flex items-center gap-1.5 px-3 py-1.5 text-foreground hover:text-foreground"
+              whileHover={shouldReduceMotion ? undefined : { y: -0.5 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+            >
+              <BookOpen className="w-3 h-3" /> docs
+              <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            </motion.a>
+          </div>
 
-        <figure className="mt-8">
-          <Image
-            src="/casement/agent-approval.gif"
-            alt="Claude Code asks to run a command, the card opens in the notch, and one click on Allow lets it carry on"
-            width={480}
-            height={270}
-            sizes="(max-width: 768px) 100vw, 640px"
-            unoptimized
-            priority
-            className="w-full max-w-2xl border border-border"
-          />
-          <figcaption className="mt-2 text-xs text-accent">
-            An agent asks to run a command. The card opens in the notch and one click lets it carry
-            on.
-          </figcaption>
-        </figure>
+          {/* The recording is 480x270. An earlier revision let it fill max-w-2xl,
+              which upscaled the page's proof image 1.4x, and marked it priority,
+              which preloaded 2.4 MB for something below the fold on a phone. */}
+          <figure className="mt-8">
+            <Image
+              src="/casement/agent-approval.gif"
+              alt="Claude Code asks to run a command, the card opens in the notch, and one click on Allow lets it carry on"
+              width={480}
+              height={270}
+              sizes="(max-width: 768px) 100vw, 448px"
+              unoptimized
+              className="w-full max-w-md border border-border"
+            />
+            <figcaption className="mt-2 text-xs text-accent">
+              An agent asks to run a command. The card opens in the notch and one click lets it carry
+              on.
+            </figcaption>
+          </figure>
+        </div>
       </motion.section>
 
       <motion.section
@@ -282,9 +290,11 @@ export default function CasementContent() {
       <motion.section ref={getRef} style={{ opacity: getOpacity, y: getY, scale: getScale }}>
         <SectionHeading title="Getting it" detail="macOS 14 or later" />
         <p className="max-w-2xl text-xs md:text-sm text-accent leading-relaxed mb-4">
-          Free and MIT licensed. Universal, so it runs on Intel and Apple silicon. The build is not
-          notarised by Apple, so macOS blocks the first launch: open it once from System Settings,
-          Privacy and Security, Open Anyway. The readme has the four steps.
+          Free and MIT licensed. Universal, so it runs on Intel and Apple silicon. Mirroring your
+          iPhone&apos;s Live Activities needs macOS 26 or later and has only been tested on macOS
+          27; everything else needs macOS 14. The build is not notarised by Apple, so
+          macOS blocks the first launch: open it once from System Settings, Privacy and
+          Security, Open Anyway. The readme has the four steps.
         </p>
         <div className="flex flex-wrap gap-4 text-xs">
           <motion.a
